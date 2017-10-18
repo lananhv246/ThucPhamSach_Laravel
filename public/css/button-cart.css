@@ -1,0 +1,92 @@
+.btn{
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding-left: 60px;
+    position: relative;
+    transform: translateZ(0px);
+    transition: all 0.5s ease 0s;
+}
+.btn:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: 100% 50% 0;
+    transition: all 0.5s ease-out 0s;
+}
+.btn:hover:after{
+    transform: scaleX(1);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+.btn span{
+    width: 40px;
+    height: 100%;
+    line-height: 40px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s linear 0s;
+}
+.btn span:after{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    margin: auto 0;
+    position: absolute;
+    top: 0;
+    right: -6px;
+    bottom: 0;
+    transform: rotate(45deg);
+    transition: all 0.3s linear 0s;
+}
+.btn.btn-sm{
+    padding-left: 40px;
+    margin: 0 2px;
+}
+.btn.btn-sm span{
+    width: 35px;
+    line-height: 27px;
+}
+.btn.btn-sm span:after{
+    width: 8px;
+    height: 8px;
+    right: -5px;
+}
+/*red*/
+.btn.red{
+    border: 1px solid #D60404;
+    background: #D60404;
+}
+.btn.red:hover,
+.btn.red span{
+    color: #D60404;
+}
+.btn.red:hover span,
+.btn.red:hover span:after{
+    background: #D60404;
+}
+/*green*/
+.btn.green{
+    border: 1px solid #2ca02c;
+    background: #2ca02c;
+}
+.btn.green:hover,
+.btn.green span{
+    color: #2ca02c;
+}
+.btn.green:hover span,
+.btn.green:hover span:after{
+    background: #2ca02c;
+}
+.btn:hover span{
+    color: #fff;
+}
