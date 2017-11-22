@@ -2,6 +2,7 @@
 @section('content')
 <div class="container">
     <div class="content-wrapper">
+    @if(count($data) != 0)
         <div class="item-container">
             <div class="container">
                 <div class="col-md-12">
@@ -21,12 +22,12 @@
                         <div class="product-desc">{!!$data->mieuta!!}</div>
                         <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
                         <hr>
-                        <div class="product-price">{!! number_format($data->sanpham->dongia,0,",","." )!!} {!!$data->sanpham->donvitien!!}/ {!!$data->sanpham->donvitinh!!}</div>
+                        <div class="product-price">{!! number_format($data->sanpham->dongia,0,",","." )!!} ₫/ {!!$data->sanpham->donvitinh!!}</div>
                         <div class="product-stock">Tồn Kho : {!!$data->sanpham->tonkho["soluong"]!!}</div>
                         <hr>
                         <div class="btn-group">
                             <a href="{{route('cart',[$data->sanpham->id])}}" class="btn btn-sm red">
-                                <span class="fa fa-cart-plus fa-2x"></span>Add Cart
+                                <span class="fa fa-cart-plus"></span>Mua
                             </a>
                         </div>
                     </div>
@@ -65,7 +66,9 @@
 
                         <section class="container">
                             @foreach($data->imagelist as $imagelist)
+                                <div class="col-md-3">
                                 <img class="img-responsive" src="/{!!$imagelist->duongdan!!}" alt=""></img>
+                                </div>
                             @endforeach
                         </section>
 
@@ -74,6 +77,10 @@
                 <hr>
             </div>
         </div>
+    @else
+    
+    <h2>Chưa có thông tin chi tiết</h2>
+    @endif
     </div>
 </div>
 @endsection

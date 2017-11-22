@@ -18,7 +18,7 @@ class SanPham extends Model
 
     protected $table = 'san_phams';
      protected $fillable = [
-        'ten_sanpham','id_loai','dongia','donvitien','donvitinh','giamgia','giacu','image',
+        'ten_sanpham','id_loai','dongia','donvitinh','giamgia','giacu','image',
     ];
     public function sanphamchitiet(){
         return $this->hasOne(SanPhamChiTiet::class,'id_sanpham','id' );

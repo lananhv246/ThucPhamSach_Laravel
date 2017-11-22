@@ -21,7 +21,6 @@
                                 <thead>
                                     <tr class="cart_menu text-center">
                                         <td class="image">Item</td>
-                                        <td class="id_sp">ID</td>
                                         <td class="name">Tên SP</td>
                                         <td class="gia">Giá</td>
                                         <td class="quantity">Số Lượng</td>
@@ -35,20 +34,17 @@
                                             <td class="image">
                                                 <a href="{{route('product_detail',[$item->id])}}"><img src="/images/upload/{{   $item->options->has('img') ? $item->options->img : '' }}" alt="" style="width: 180px; height: 150px;" class="img-responsive"></a>
                                             </td>
-                                            <td class="id_sp">
-                                                <a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->id}}</p></span></a>
-                                            </td>
                                             <td class="name">
                                                 <a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->name}}</p></span></a>
                                             </td>
                                             <td class="cart_price">
-                                                <p>${{number_format($item->price,0,",","." )}}</p>
+                                                <p>{{number_format($item->price,0,",","." )}} ₫</p>
                                             </td>
                                             <td>
                                                 <p>{{$item->qty}}</p>
                                             </td>
                                             <td class="cart_total">
-                                                <p class="cart_total_price">${{number_format($item->subtotal,0,",","." )}}</p>
+                                                <p class="cart_total_price">{{number_format($item->subtotal,0,",","." )}} ₫</p>
                                             </td>
                                     </tr>
                                 @endforeach
@@ -64,31 +60,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @if(isset($thongtin))
+                                @if(isset(Auth::user()->diachikh))
                                     <tr class="text-center">
                                         <td class="cart_price">
-                                            <p>{{$thongtin->user->name}}</p>
+                                            <p>{{Auth::user()->name}}</p>
                                         </td>
                                         <td class="cart_price">
-                                            <p>{{$thongtin->diachi}}</p>
+                                            <p>{{Auth::user()->diachikh->diachi}}</p>
                                         </td>
                                         <td class="cart_price">
-                                            <p>{{$thongtin->dienthoai}}</p>
+                                            <p>{{Auth::user()->diachikh->dienthoai}}</p>
                                         </td>
                                     </tr>
                                     <tr class="text-center">
                                         <div id="map-canvas"></div>
-                                        <input class="form-control" id="searchmap" name="diachi" type="hidden" value="{{$thongtin->diachi}}">
-                                        <input class="form-control" id="lat" name="lat" type="hidden" value="{{$thongtin->lat}}">
-                                        <input class="form-control" id="lng" name="lng" type="hidden" value="{{$thongtin->lng}}">
-                                        <a href="{{route('diachikh.edit',[$thongtin->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Sửa Thông Tin</a>
+                                        <input class="form-control" id="searchmap" name="diachi" type="hidden" value="{{Auth::user()->diachikh->diachi}}">
+                                        <input class="form-control" id="lat" name="lat" type="hidden" value="{{Auth::user()->diachikh->lat}}">
+                                        <input class="form-control" id="lng" name="lng" type="hidden" value="{{Auth::user()->diachikh->lng}}">
+                                        <a href="{{route('users.edit',[Auth::user()->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
                                     </tr>
                                     <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>
                                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVbYto_FC8eWCpG5IR5Mcu2pN71UEV5jA&libraries=places"
                                             type="text/javascript"></script>
                                 @else
+                                    <tr><td><p>{{Auth::user()->name}}</p></td></tr>
                                     <td>Chua có thông tin chi tiết</td>
-                                    <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Thêm Mới</a>
+                                    <a href="{{route('users.edit',[Auth::user()->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Chỉnh Sửa Thông Tin</a>
                                 @endif
                                 </tbody>
                             </table>
@@ -111,17 +108,22 @@
                                         <li>Thuế: <span> {{ Cart::tax()}} </span></li>
                                     </div>
                                     <div class="sub_total">
-                                        <li>Tổng Giá: <span>{{Cart::total()}} VNĐ</span></li>
+                                        <li>Tổng Giá: <span>{{Cart::total()}} ₫</span></li>
                                     </div>
                                 </ul>
                                 <div class="chose_area">
                                     @if(Auth::check())
+                                     @if(isset(Auth::user()->diachikh))
                                         {!! Form::open(['route'=>['checkout.store'], 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
                                         <button class="btn green right" type="submit">
-                                            <span class="fa fa-cart-plus fa-2x"></span>
+                                            <span class="fa fa-cart-plus"></span>
                                             Đặt Hàng
                                         </button>
                                         {!! Form::close() !!}
+                                    @else
+                                        <p>vui lòng cập nhật thông tin</p>
+                                    @endif
+
                                     @else
                                         @include('auth.login')
                                     @endif

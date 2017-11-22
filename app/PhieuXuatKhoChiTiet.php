@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\TonKho;
 use App\PhieuXuatKho;
+use App\DonHangNo;
 
 class PhieuXuatKhoChiTiet extends Model
 {
@@ -17,5 +18,8 @@ class PhieuXuatKhoChiTiet extends Model
     }
     public function phieuxuatkho(){
         return $this->belongsTo(PhieuXuatKho::class,'id_phieuxuatkho','id');
+    }
+    public function donhangno(){
+        return $this->hasOne(DonHangNo::class,'id_phieu_xuat_kho_chi_tiet','id' );
     }
 }

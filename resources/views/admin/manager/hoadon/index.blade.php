@@ -10,10 +10,9 @@
                     <th>Tên Hóa Đơn</th>
                     <th>Khách Hàng</th>
                     <th>Tổng Giá</th>
-                    <th>Tổng Số Lượng</th>
-                    <th>Đơn vị tiền</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tổng Số sản phẩm</th>
+                    <th>Tùy Chọn</th>
+                    {{--  <th>Tùy Chọn</th>  --}}
                 </tr>
                 </thead>
                 <tbody>
@@ -26,34 +25,32 @@
                         <td>{!! $hoadon->ten_hoadon !!}</td>
                         <td>{!! $hoadon->user->email !!}</td>
                         <td>{!! $hoadon->tonggia !!}</td>
-                        <td>{!! $hoadon->tongsoluong !!}</td>
-                        <td>{!! $hoadon->donvitien !!}</td>
+                        <td>{!! $hoadon->tongso_sanpham !!}</td>
                         {{--  array  --}}
                         {{--<td>{!! $data['id'] !!}</td>--}}
                         {{--<td>{!! $data['ten_hoadon'] !!}</td>--}}
                         {{--<td>{!! $data->user['email'] !!}</td>--}}
                         {{--<td>{!! $data['tonggia'] !!}</td>--}}
-                        {{--<td>{!! $data['tongsoluong'] !!}</td>--}}
+                        {{--<td>{!! $data['tongso_sanpham'] !!}</td>--}}
                         {{--<td>{!! $data['donvitien'] !!}</td>--}}
                         <td>
-                            <a href="{{route('hoadon.show',[$hoadon->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('hoadon.show',[$hoadon->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
-                        <td>
+                        {{--  <td>
                             {!! Form::open(['route'=>['hoadon.destroy', $hoadon->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xoa', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa', ['class'=>'btn btn-success btn-sm']) !!}
                             {!! Form::close() !!}
-                        </td>
+                        </td>  --}}
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('hoadon.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('hoadon.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>
-
-
-
+        <!-- phan trang -->
+        {!! $data->links() !!}
         </div>
 
     </div>

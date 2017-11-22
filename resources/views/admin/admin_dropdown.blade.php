@@ -3,6 +3,7 @@
         <span class="fa fa-user-circle-o"></span>{{ Auth::guard('admin')->user()->name }} <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" role="menu" style="text-align: center">
+        <li><a href="/admin"><span class="fa fa-user-circle-o"></span>Trang Quản Trị</a></li>
         <li><a href="{{route('admins.show',[Auth::id()])}}" ><span class="fa fa-user-circle-o"></span>Trang Cá Nhân</a> </li>
         <li>
             <a href="{{ route('logout') }}"

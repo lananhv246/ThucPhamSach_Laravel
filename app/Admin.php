@@ -11,7 +11,7 @@ use Laravel\Scout\Searchable;
 
 class Admin extends Authenticatable
 {
-    use Searchable;
+    // use Searchable;
     use Notifiable;
 
     /**
@@ -40,8 +40,8 @@ class Admin extends Authenticatable
     public function hoadon(){
         return $this->hasMany(HoaDon::class,'id_admin' );
     }
-    public function searchableAs()
-    {
-        return 'admin';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'admin';
+    // }
 }

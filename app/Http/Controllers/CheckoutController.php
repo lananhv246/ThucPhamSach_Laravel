@@ -14,6 +14,9 @@ use Auth;
 use App\DiaChiKH;
 use App\SanPham;
 use App\TonKho;
+use Carbon\Carbon;
+use App\DonHangNo;
+// use App\Notifications\Thongbaodonhang;
 
 class CheckoutController extends Controller
 {
@@ -26,7 +29,7 @@ class CheckoutController extends Controller
     {
         $cart = Cart::content();
         $khachhang = Auth::user()->id;
-        $thongtin = DiaChiKH::select('*')->where('id_khachhang',$khachhang)->first();
+        $thongtin = DiaChiKH::where('id_khachhang',$khachhang)->first();
          return view('layouts.main.checkout.index',compact('cart','thongtin'));
     }
 
@@ -48,15 +51,16 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        $cart = Cart::content();
+        $total = Cart::total();
+        $datetime = Carbon::now();
         $hoadon = new HoaDon();
-        $hoadon->ten_hoadon = 'hóa đơn của '.Auth::user()->name;
+        $hoadon->ten_hoadon = 'hóa đơn của '.Auth::user()->name .' ngày '.$datetime;
         $hoadon->id_khachhang = Auth::user()->id;
-        $hoadon->tonggia = Cart::total();
-        $hoadon->tongsoluong = Cart::count();
-        $hoadon->donvitien = 'VND';
+        $hoadon->tonggia = intval(str_replace(',', '', $total));
+        $hoadon->tongso_sanpham = count($cart);
         $hoadon->save();
 
-        $cart = Cart::content();
         foreach($cart as $item){
             $chitiethd = new HoaDonChiTiet();
             $chitiethd->id_hoadon = $hoadon->id;
@@ -72,10 +76,13 @@ class CheckoutController extends Controller
             $product = SanPham::where('id', $item->id)->first();
             // echo $product;
             if($item->qty > $tonkho->soluong){
-                Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => $tonkho->soluong, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitien'=>$product->donvitien, 'donvitinh'=>$product->donvitinh)));
+                Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => $tonkho->soluong, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitinh'=>$product->donvitinh)));
             }
+            // else if($tonkho->soluong == 0){
+            //     Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => 1, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitinh'=>$product->donvitinh)));
+            // }
             else{
-                Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => $item->qty, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitien'=>$product->donvitien, 'donvitinh'=>$product->donvitinh)));
+                Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => $item->qty, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitinh'=>$product->donvitinh)));
             }
 
             if($item->qty > $tonkho->soluong){
@@ -89,15 +96,15 @@ class CheckoutController extends Controller
         }
 
         //phieu xuatkho
-        $phieuxuatkho = new PhieuXuatKho();
-        $phieuxuatkho->ten_phieuxuatkho = 'phiếu xuất kho cho '.Auth::user()->name;
-        $phieuxuatkho->id_khachhang = Auth::user()->id;
-        $phieuxuatkho->tongsoluong = Cart::count();
-        $phieuxuatkho->tonggia = Cart::total();
-        $phieuxuatkho->donvitien = 'VND';
-        $phieuxuatkho->save();
-
         $xuatkhochitiet = Cart::content();
+        $totals = Cart::total();
+        $phieuxuatkho = new PhieuXuatKho();
+        $phieuxuatkho->ten_phieuxuatkho = 'phiếu xuất hàng cho '.Auth::user()->name;
+        $phieuxuatkho->id_khachhang = Auth::user()->id;
+        $phieuxuatkho->tongso_sanpham = count($xuatkhochitiet);
+        $phieuxuatkho->tonggia = intval(str_replace(',', '', $totals));
+        $phieuxuatkho->save();
+        // $phieuxuatkho->notify(new Thongbaodonhang($phieuxuatkho));
         foreach($xuatkhochitiet as $itemxuatkho){
 
             $hangtonkho = TonKho::where('id_sanpham',$itemxuatkho->id)->first();
@@ -110,8 +117,18 @@ class CheckoutController extends Controller
             $chitietpx->thue = $itemxuatkho->tax * $itemxuatkho->qty;
             $chitietpx->save();
             Cart::remove($itemxuatkho->rowId);
+            $hdcts = HoaDonChiTiet::where('id_sanpham',$itemxuatkho->id)->where( 'id_hoadon',$hoadon->id)->first();
+            if($hdcts->soluong > $chitietpx->soluong){
+                $donno = new DonHangNo();
+                $donno->id_phieu_xuat_kho_chi_tiet = $chitietpx->id;
+                // $donno->ten_donhangno = 'Đơn hàng nợ của '. $chitietpx->phieuxuatkho->ten_phieuxuatkho;
+                $donno->soluong_no = $hdcts->soluong - $chitietpx->soluong;
+                $donno->save();
+            }
+            // echo $hdcts;
             // echo $itemxuatkho->qty;
         }
+        $request->session()->flash('success', 'Bạn đả hoàn tất việc mua sản phẩm');
         return redirect('/');
     }
 

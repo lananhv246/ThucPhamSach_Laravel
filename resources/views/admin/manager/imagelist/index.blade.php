@@ -2,15 +2,15 @@
 @section('admins')
     @include('flashmessage.flashmessage')
     <div class="col-sm-12">
-        <div class="text-center panel-heading"><h3><dt>Image List</dt></h3></div>
+        <div class="text-center panel-heading"><h3><dt>Danh Sách Hình Ảnh</dt></h3></div>
             <table class="table table-responsive">
                 <thead class="thead-inverse">
                 <tr>
                     <th>Id Sản phẩm CT</th>
-                    <th>Image List</th>
+                    <th>Danh Sách Hình Ảnh</th>
                     <th>Sản Phẩm</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy Chọn</th>
+                    <th>Tùy Chọn</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,18 +26,18 @@
                         </td>
                         <td>{!! $images->sanpham->ten_sanpham !!}</td>
                         <td>
-                            <a href="{{route('imagelist.show',[$images->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('imagelist.show',[$images->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['url' => ['/admin/imagelist/delete', $images->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xoa List Image', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa Hình Ảnh', ['class'=>'btn btn-success btn-sm']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('imagelist.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('imagelist.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

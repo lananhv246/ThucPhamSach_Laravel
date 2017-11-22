@@ -9,8 +9,8 @@
                     <th>ID</th>
                     <th>Sản Phẩm</th>
                     <th>Số Lượng</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy Chọn</th>
+                    <th>Tùy Chọn</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,18 +20,18 @@
                         <td>{!! $kho->sanpham->ten_sanpham !!}</td>
                         <td>{!! $kho->soluong !!}</td>
                         <td>
-                            <a href="{{route('tonkho.show',[$kho->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('tonkho.show',[$kho->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['tonkho.destroy', $kho->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xoa', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa', ['class'=>'btn btn-success btn-sm']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('tonkho.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('tonkho.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

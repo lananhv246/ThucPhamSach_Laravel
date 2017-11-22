@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class ImagesList extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'images_lists';
      protected $fillable = [
@@ -17,8 +17,8 @@ class ImagesList extends Model
     public function sanphamchitiet(){
         return $this->belongsTo(SanPhamChiTiet::class,'id_sanphamchitiet','id' );
     }
-    public function searchableAs()
-    {
-        return 'imagelist';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'imagelist';
+    // }
 }

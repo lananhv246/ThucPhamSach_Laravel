@@ -49,7 +49,7 @@
 <div id="main" style="margin-top: 50px">
     @include('layouts.main.template.topcollect');
     @include('layouts.main.template.product');
-    @include('layouts.main.template.product-detail');
+    {{--  @include('layouts.main.template.product-detail');  --}}
     @include('layouts.main.template.shopping-cart');
     @include('layouts.main.template.checkout');
 </div>

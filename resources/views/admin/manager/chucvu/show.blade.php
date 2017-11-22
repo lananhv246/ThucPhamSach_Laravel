@@ -34,15 +34,15 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{!! $data->created_at !!}</td>
+                        <td>Ngày Thêm: {!! $data->created_at !!}</td>
                     </tr>
                     <tr>
-                        <td>{!! $data->updated_at !!}</td>
+                        <td>Ngày Cập Nhật{!! $data->updated_at !!}</td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('chucvu.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Trở về</a>
-                            <a href="{{route('chucvu.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Chỉnh sửa</a>
+                            <a href="{{route('chucvu.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở về</a>
+                            <a href="{{route('chucvu.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Chỉnh sửa</a>
                         </td>
                     </tr>
                     </tbody>

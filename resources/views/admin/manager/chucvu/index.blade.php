@@ -24,7 +24,7 @@
                     <td>{!! $chucvu->quyen !!}</td>
                     <td>{!! $chucvu->lever !!}</td>
                     <td>
-                        <a href="{{route('chucvu.show',[$chucvu->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-eye fa-2x"></span>Xem</a>
+                        <a href="{{route('chucvu.show',[$chucvu->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-eye"></span>Xem</a>
                     </td>
                     <td>
                         {!! Form::open(['route'=>['chucvu.destroy', $chucvu->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -34,8 +34,8 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Trở về</a>
-                    <a href="{{route('chucvu.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Thêm mới</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở về</a>
+                    <a href="{{route('chucvu.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm mới</a>
                 </tr>
             </tbody>
         </table>

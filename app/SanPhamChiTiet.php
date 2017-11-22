@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class SanPhamChiTiet extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'san_pham_chi_tiets';
      protected $fillable = [
@@ -21,8 +21,8 @@ class SanPhamChiTiet extends Model
     public function imagelist(){
         return $this->hasMany(ImagesList::class,'id_sanphamchitiet');
     }
-    public function searchableAs()
-    {
-        return 'sanphamchitiet';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'sanphamchitiet';
+    // }
 }

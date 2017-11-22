@@ -18,7 +18,7 @@
                         <td>{!! $trangthai->id !!}</td>
                         <td>{!! $trangthai->ten_trangthai !!}</td>
                         <td>
-                            <a href="{{route('trangthaihoadon.show',[$trangthai->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('trangthaihoadon.show',[$trangthai->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Show</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['trangthaihoadon.destroy', $trangthai->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -28,8 +28,8 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('trangthaihoadon.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                    <a href="{{route('trangthaihoadon.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Create</a>
                 </tr>
                 </tbody>
             </table>

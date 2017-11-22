@@ -11,8 +11,14 @@ use Session;
 use Auth;
 use App\SanPham;
 use App\PhieuNhapChiTiet;
+use App\PhieuXuatKho;
+use App\PhieuXuatKhoChiTiet;
+use App\DonHangNo;
+use App\HoaDon;
+use App\HoaDonChiTiet;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
+use Cart;
 
 class PhieunhapController extends Controller
 {
@@ -60,9 +66,8 @@ class PhieunhapController extends Controller
             //phieu nhap chi tiet
             'id_phieunhap.*' => 'required',
             'id_sanpham.*' => 'required',
-            'soluong.*' => 'required|numeric|digits_between:1,11',
-            'dongia.*' => 'required|numeric|digits_between:1,11',
-            'donvitien.*'=>'required',
+            'soluong.*' => 'required|numeric|digits_between:1,11|not_in:0',
+            'dongia.*' => 'required|numeric|digits_between:1,11|not_in:0',
             'donvitinh.*'=>'required',
         ),
             array(
@@ -73,15 +78,17 @@ class PhieunhapController extends Controller
                 'ten_phieunhap.max' => 'phiếu nhập quá ký tự qui định',
                 //pnct
                 'id_phieunhap.required' => 'bạn chưa nhập phiếu nhập',
-                'id_sanpham.required' => 'bạn chưa nhập Sản Phẩm',
-                'soluong.required' => 'bạn chưa nhập số lượng',
-                'soluong.numeric' => 'Số lượng phải là số',
-                'soluong.digits_between' => 'số lượng quá ký tự qui định',
-                'dongia.required' => 'bạn chưa nhập đơn giá',
-                'dongia.numeric' => 'đơn giá phải là số',
-                'dongia.digits_between' => 'đơn giá quá ký tự qui định',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
-                'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
+                'id_sanpham.*.required' => 'bạn chưa nhập Sản Phẩm',
+                // 'id_sanpham.unique' => 'sản phẩm đả tồn tại',
+                'soluong.*.required' => 'bạn chưa nhập số lượng',
+                'soluong.*.numeric' => 'Số lượng phải là số',
+                'soluong.*.digits_between' => 'số lượng sai cấu trúc',
+                'soluong.*.not_in' => 'số lượng sai cấu trúc',
+                'dongia.*.required' => 'bạn chưa nhập đơn giá',
+                'dongia.*.numeric' => 'đơn giá phải là số',
+                'dongia.*.digits_between' => 'đơn giá sai cấu trúc',
+                'dongia.*.not_in' => 'đơn giá sai cấu trúc',
+                'donvitinh.*.required' => 'bạn chưa nhập đơn vị tính',
             ));
         $tram = TramTrungChuyen::find($request->id_tram);
         $datetime = Carbon::now();
@@ -92,6 +99,7 @@ class PhieunhapController extends Controller
         $id_phieunhap = $data->id;
         // echo $id_phieunhap;
         if($id_phieunhap != 0){
+            if(isset($request->id_sanpham)){
             foreach($request->id_sanpham as $key => $value){
                 // $sanpham = SanPham::where('id',$value)->first();
                 $pnct = array(
@@ -99,23 +107,39 @@ class PhieunhapController extends Controller
                     'id_sanpham' => $value,
                     'soluong' => $request->soluong[$key],
                     'dongia' => $request->dongia[$key],
-                    'donvitien' => $request->donvitien[$key],
                     'donvitinh' => $request->donvitinh[$key],
                     // 'created_at' => $datetime,
                     // 'updated_at' => $datetime,  
                 );
                 PhieuNhapChiTiet::create($pnct);
                 $sanpham = SanPham::find($value);
-                $sanpham->giacu = $request->dongia[$key];
-                $sanpham->dongia = $request->dongia[$key] - $sanpham->giamgia;
-                $sanpham->donvitien = $request->donvitien[$key];
-                $sanpham->donvitinh = $request->donvitinh[$key];
-                $sanpham->save();
+                $sp = array(
+                    'giacu' => $request->dongia[$key],
+                    'dongia' => $request->dongia[$key]*(1 - $sanpham->giamgia),
+                    'donvitinh' => $request->donvitinh[$key],
+                    // 'created_at' => $datetime,
+                    // 'updated_at' => $datetime,  
+                );
+                // $sanpham->giacu = $request->dongia[$key];
+                // $sanpham->dongia = $request->dongia[$key] - $sanpham->giamgia;
+                // $sanpham->donvitinh = $request->donvitinh[$key];
+                $sanpham->update($sp);
                 $tonkho = array(
                     'soluong' => $sanpham->tonkho->soluong + $request->soluong[$key],
                 );
                 $sanpham->tonkho->update($tonkho);
-            }
+                // if(count($sanpham->tonkho->phieuxuatkhochitiet) > 0){
+                //     foreach($sanpham->tonkho->phieuxuatkhochitiet as $pxkct){
+                //         if(count($pxkct->donhangno) > 0){
+                //             echo 'co don hang no';
+                //             $don = DonHangNo::where('id_phieu_xuat_kho_chi_tiet',$pxkct->id)->first();
+                //         }
+                //     }
+                // }
+                // else{
+                //     echo 'k co pxkct';
+                // }
+            }}
         }
         Session::flash('success','Thành Công');
         return redirect()->back();
@@ -168,9 +192,8 @@ class PhieunhapController extends Controller
             //phieu nhap chi tiet
             'id_phieunhap.*' => 'required',
             'id_sanpham.*' => 'required',
-            'soluong.*' => 'required|numeric|digits_between:1,11',
-            'dongia.*' => 'required|numeric|digits_between:1,11',
-            'donvitien.*'=>'required',
+            'soluong.*' => 'required|numeric|digits_between:1,11|not_in:0',
+            'dongia.*' => 'required|numeric|digits_between:1,11|not_in:0',
             'donvitinh.*'=>'required',
         ),
             array(
@@ -180,15 +203,16 @@ class PhieunhapController extends Controller
                 // 'ten_phieunhap.required' => 'bạn chưa nhập Hóa Đơn',
                 'ten_phieunhap.max' => 'phiếu nhập quá ký tự qui định',
                 //pnct
-                'id_phieunhap.required' => 'bạn chưa nhập phiếu nhập',
-                'id_sanpham.required' => 'bạn chưa nhập Sản Phẩm',
-                'soluong.required' => 'bạn chưa nhập số lượng',
-                'soluong.numeric' => 'Số lượng phải là số',
-                'soluong.digits_between' => 'số lượng quá ký tự qui định',
-                'dongia.required' => 'bạn chưa nhập đơn giá',
-                'dongia.numeric' => 'đơn giá phải là số',
-                'dongia.digits_between' => 'đơn giá quá ký tự qui định',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
+                'id_phieunhap.*.required' => 'bạn chưa nhập phiếu nhập',
+                'id_sanpham.*.required' => 'bạn chưa nhập Sản Phẩm',
+                'soluong.*.required' => 'bạn chưa nhập số lượng',
+                'soluong.*.numeric' => 'Số lượng phải là số',
+                'soluong.*.digits_between' => 'số lượng sai cấu trúc',
+                'soluong.*.not_in' => 'số lượng sai cấu trúc',
+                'dongia.*.required' => 'bạn chưa nhập đơn giá',
+                'dongia.*.numeric' => 'đơn giá phải là số',
+                'dongia.*.digits_between' => 'đơn giá sai cấu trúc',
+                'dongia.*.not_in' => 'đơn giá sai cấu trúc',
                 'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
             ));
         $data = PhieuNhap::findOrFail($id);
@@ -199,7 +223,6 @@ class PhieunhapController extends Controller
         $data->update(Input::except('id_admin','ten_phieunhap'));
         $id_phieunhap = $data->id;
     if($id_phieunhap != 0){
-
         if($data->phieunhapchitiet->count() > 0){
             if(isset($request->id_sanphammoi)){
                 foreach($data->phieunhapchitiet as $key => $v){
@@ -208,21 +231,37 @@ class PhieunhapController extends Controller
                         'id_sanpham' => $request->id_sanpham[$key],
                         'soluong' => $request->soluong[$key],
                         'dongia' => $request->dongia[$key],
-                        'donvitien' => $request->donvitien[$key],
                         'donvitinh' => $request->donvitinh[$key],
                         // 'created_at' => $datetime,
                         // 'updated_at' => $datetime,  
                     );
                     $sanpham = SanPham::find($request->id_sanpham[$key]);
-                    $sanpham->giacu = $request->dongia[$key];
-                    $sanpham->dongia = $request->dongia[$key] - $sanpham->giamgia;
-                    $sanpham->donvitien = $request->donvitien[$key];
-                    $sanpham->donvitinh = $request->donvitinh[$key];
-                    $sanpham->save();
-                    $phieunhapchitiet = PhieuNhapChiTiet::find($v->id);
-                    $tonkho = array(
-                        'soluong' => $sanpham->tonkho->soluong + $request->soluong[$key] - $phieunhapchitiet->soluong,
+                    
+                    $sp1 = array(
+                        'giacu' => $request->dongia[$key],
+                        'dongia' => $request->dongia[$key]*(1 - $sanpham->giamgia),
+                        'donvitinh' => $request->donvitinh[$key],
+                        // 'created_at' => $datetime,
+                        // 'updated_at' => $datetime,  
                     );
+                    $sanpham->update($sp1);
+                    $phieunhapchitiet = PhieuNhapChiTiet::find($v->id);
+                    if($pnct['soluong'] < $v->sluong){
+
+                        $tonkho = array(
+                            'soluong' => $sanpham->tonkho->soluong - ($v->soluong - $request->soluong[$key]),
+                        );
+                    }
+                    else if($pnct['soluong'] == $v->sluong){
+                        $tonkho = array(
+                            'soluong' => $sanpham->tonkho->soluong,
+                        );
+                    }
+                    else {
+                        $tonkho = array(
+                            'soluong' => $sanpham->tonkho->soluong + ( $request->soluong[$key] - $v->soluong),
+                        );
+                    }
                     $sanpham->tonkho->update($tonkho);
                     PhieuNhapChiTiet::find($v->id)->update($pnct);
 
@@ -236,63 +275,73 @@ class PhieunhapController extends Controller
                         'id_sanpham' => $value,
                         'soluong' => $request->soluongmoi[$key],
                         'dongia' => $request->dongiamoi[$key],
-                        'donvitien' => $request->donvitienmoi[$key],
                         'donvitinh' => $request->donvitinhmoi[$key],
                         // 'created_at' => $datetime,
                         // 'updated_at' => $datetime,  
                     );
                     PhieuNhapChiTiet::create($pnctmoi);
                     $sanphammoi = SanPham::find($value);
-                    $sanphammoi->giacu = $request->dongiamoi[$key];
-                    $sanphammoi->dongia = $request->dongiamoi[$key] - $sanphammoi->giamgia;
-                    $sanphammoi->donvitien = $request->donvitienmoi[$key];
-                    $sanphammoi->donvitinh = $request->donvitinhmoi[$key];
-                    $sanphammoi->save();
+                    $sp2 = array(
+                        'giacu' => $request->dongiamoi[$key],
+                        'dongia' => $request->dongiamoi[$key]*(1 - $sanphammoi->giamgia),
+                        'donvitinh' => $request->donvitinhmoi[$key],
+                        // 'created_at' => $datetime,
+                        // 'updated_at' => $datetime,  
+                    );
+                    $sanphammoi->update($sp2);
                     $tonkhomoi = array(
                             'soluong' => $sanphammoi->tonkho->soluong + $request->soluongmoi[$key],
                         );
                         $sanphammoi->tonkho->update($tonkhomoi);
                     // echo $pnctmoi;
+                }
             }
-        }
-                 else{
-                    foreach($data->phieunhapchitiet as $key => $v){
+            else{
+                foreach($data->phieunhapchitiet as $key => $v){
                         // $sanpham = SanPham::where('id',$value)->first();
-                        $pnct = array(
+                        $pnctup = array(
                             'id_phieunhap' => $id_phieunhap,
                             'id_sanpham' => $request->id_sanpham[$key],
                             'soluong' => $request->soluong[$key],
                             'dongia' => $request->dongia[$key],
-                            'donvitien' => $request->donvitien[$key],
                             'donvitinh' => $request->donvitinh[$key],
                             // 'created_at' => $datetime,
                             // 'updated_at' => $datetime,  
                         );
-                        $sanpham = SanPham::find($request->id_sanpham[$key]);
-                        $sanpham->giacu = $request->dongia[$key];
-                        $sanpham->dongia = $request->dongia[$key] - $sanpham->giamgia;
-                        $sanpham->donvitien = $request->donvitien[$key];
-                        $sanpham->donvitinh = $request->donvitinh[$key];
-                        $sanpham->save();
-                        $phieunhapchitiet = PhieuNhapChiTiet::find($v->id);
-                        $tonkho = array(
-                            'soluong' => $sanpham->tonkho->soluong + $request->soluong[$key] - $phieunhapchitiet->soluong,
+                        $sanphamup = SanPham::find($request->id_sanpham[$key]);
+                        $spup = array(
+                            'giacu' => $request->dongia[$key],
+                            'dongia' => $request->dongia[$key]*(1 - $sanphamup->giamgia),
+                            'donvitinh' => $request->donvitinh[$key],
+                            // 'created_at' => $datetime,
+                            // 'updated_at' => $datetime,  
                         );
-                        $sanpham->tonkho->update($tonkho);
-                        PhieuNhapChiTiet::find($v->id)->update($pnct);
-                    }
-                };
-            }
-        else{
+                        $sanphamup->update($spup);
+                        $phieunhapchitiet = PhieuNhapChiTiet::find($v->id);
+                        if($pnctup['soluong'] < $v->soluong){
+                            $tonkhoup = array(
+                                'soluong' => $sanphamup->tonkho->soluong - ($v->soluong - $request->soluong[$key]),
+                            ); 
+                        }
+                        else{
+                            $tonkhoup = array(
+                                'soluong' => $sanphamup->tonkho->soluong + ($request->soluong[$key] - $v->soluong),
+                            ); 
+                        }
+                        $sanphamup->tonkho->update($tonkhoup);
+                        PhieuNhapChiTiet::find($v->id)->update($pnctup);
+                }
+            };
+        }
+    else{
             //them moi 
-                    foreach($request->id_sanphammoi as $key => $value){
+                foreach($request->id_sanphammoi as $key => $value){
                         // $sanpham = SanPham::where('id',$value)->first();
                         $pnctmoi = array(
                             'id_phieunhap' => $id_phieunhap,
                             'id_sanpham' => $value,
                             'soluong' => $request->soluongmoi[$key],
                             'dongia' => $request->dongiamoi[$key],
-                            'donvitien' => $request->donvitienmoi[$key],
                             'donvitinh' => $request->donvitinhmoi[$key],
                             // 'created_at' => $datetime,
                             // 'updated_at' => $datetime,  
@@ -301,7 +350,6 @@ class PhieunhapController extends Controller
                         $sanphammoi = SanPham::find($value);
                         $sanphammoi->giacu = $request->dongiamoi[$key];
                         $sanphammoi->dongia = $request->dongiamoi[$key] - $sanphammoi->giamgia;
-                        $sanphammoi->donvitien = $request->donvitienmoi[$key];
                         $sanphammoi->donvitinh = $request->donvitinhmoi[$key];
                         $sanphammoi->save();
                         $tonkhomoi = array(
@@ -309,9 +357,9 @@ class PhieunhapController extends Controller
                             );
                             $sanphammoi->tonkho->update($tonkhomoi);
                         // echo $pnctmoi;
-                    }
-            };
-        }
+                }
+        };
+    }
         
         Session::flash('success','Thành Công');
         return redirect()->route('phieunhap.show', $id);

@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class HoaDonChiTiet extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table ='hoa_don_chi_tiets';
      protected $fillable = [
@@ -21,8 +21,8 @@ class HoaDonChiTiet extends Model
     public function hoadon(){
         return $this->belongsTo(HoaDon::class,'id_hoadon','id' );
     }
-    public function searchableAs()
-    {
-        return 'hoadonchitiet';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'hoadonchitiet';
+    // }
 }

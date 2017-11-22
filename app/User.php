@@ -10,7 +10,7 @@ use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Searchable;
+    // use Searchable;
     use Notifiable;
 
     /**
@@ -36,9 +36,9 @@ class User extends Authenticatable
     public function hoadon(){
         return $this->hasMany(HoaDon::class );
     }
-    public function searchableAs()
-    {
-        return 'user';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'user';
+    // }
 
 }

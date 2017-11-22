@@ -42,10 +42,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="/" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+                                <a href="/" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
                             </td>
                             <td>
-                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Edit</a>
+                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Edit</a>
                             </td>
                         </tr>
                         </tbody>
@@ -64,12 +64,12 @@
                     {!! Form::hidden('lat', null, array('class'=>'form-control', 'id'=>'lat')) !!}
 
                     {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
-                            <a href="{{route('diachikh.edit',[$data->diachikh->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Sửa Thông Tin</a>
+                            <a href="{{route('diachikh.edit',[$data->diachikh->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
                             <tr>Ngày lập thông tin: {!! $data->diachikh->created_at !!}| Ngày Cập nhật thông tin: {!! $data->diachikh->updated_at !!}</tr>
                     {!! Form::close() !!}
                         @else
                     <div>Chua có thong tin chi tiết</div>
-                        <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Thêm Mới</a>
+                        <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                         @endif
                 </div>
                 <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>

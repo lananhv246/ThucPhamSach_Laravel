@@ -10,7 +10,7 @@ use Laravel\Scout\Searchable;
 
 class Map extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'maps';
     protected $fillable = [
@@ -19,8 +19,8 @@ class Map extends Model
     public function user(){
         return $this->hasMany(User::class,'id_loai' );
     }
-    public function searchableAs()
-    {
-        return 'map';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'map';
+    // }
 }

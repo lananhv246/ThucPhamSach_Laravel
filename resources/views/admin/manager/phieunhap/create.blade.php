@@ -9,7 +9,6 @@
                         '<td>{!! Form::select("id_sanpham[]",$sanpham, null,["id" => "id_sanpham", "class" => "form-control", "placeholder" => "Chọn Sản Phẩm"]) !!}</td>' +
                         '<td>{!! Form::text("soluong[]", null, array("class"=>"form-control")) !!}</td>' +
                         '<td>{!! Form::text("dongia[]", null, array("class"=>"form-control")) !!}</td>' +
-                        '<td>{!! Form::select("donvitien[]", ["vnđ" => "Việt Nam Đồng", "€" => "Euro", "$" => "USD"], null, ["class" => "form-control"]) !!}</td>' +
                         '<td>{!! Form::select("donvitinh[]", ["kg" => "Kilogam", "Bó" => "Bó"], null, ["class" => "form-control"]) !!}</td>' +
                         '<td><div class="delete_order_pro' + $n + '"><span class="fa fa-minus btn btn-sm red btn-danger" aria-hidden="true"></span></div></td>' +
                     '</tr>'
@@ -19,6 +18,7 @@
                     e.preventDefault();
                     $('.row' + $n).remove();
                 });
+               
             }
 
             $('#add_order_pro').click(function () {
@@ -26,7 +26,7 @@
             });
         });
     </script>
-    
+
         <div class="col-md-12">
              <!-- thong bao loi-->
             @include('flashmessage.flashmessage')
@@ -47,10 +47,11 @@
                     </div>
                     {{--  {!! Form::label('ten_phieunhap', 'Tên Phiếu:') !!}
                     {!! Form::text('ten_phieunhap', null, array('class'=>'form-control')) !!}  --}}
-                    
-                    <a href="{{route('phieunhap.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+                    <div class="col-md-12">
+                    <a href="{{route('phieunhap.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
 
-                    {!! Form::submit('Thêm', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                    {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                    </div>
                 </div>
                 <div class="panel-body">
                 <h3>Phiếu Nhập Chi Tiết Mới</h3>
@@ -61,7 +62,6 @@
                             <th>Sản Phẩm</th>
                             <th>Số Lượng</th>
                             <th>Đơn Giá</th>
-                            <th>Đơn vị tiền</th>
                             <th>Đơn vị tính</th>
                             <th><div id="add_order_pro"><i class="fa fa-plus btn btn-sm red btn-danger" aria-hidden="true"></i></div></th>
                         </tr>

@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class ChucVu extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'chuc_vus';
     protected $fillable = [
@@ -17,8 +17,8 @@ class ChucVu extends Model
     public function admin(){
         return $this->belongsTo(Admin::class, 'id_admin', 'id');
     }
-    public function searchableAs()
-    {
-        return 'chucvu';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'chucvu';
+    // }
 }

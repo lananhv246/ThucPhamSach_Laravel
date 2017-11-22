@@ -10,8 +10,8 @@
                     <th>Khách Hàng</th>
                     <th>Địa Chỉ</th>
                     <th>Điện Thoại</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy Chọn</th>
+                    <th>Tùy Chọn</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,7 +22,7 @@
                         <td>{!! $dckh->diachi !!}</td>
                         <td>{!! $dckh->dienthoai !!}</td>
                         <td>
-                            <a href="{{route('diachikh.show',[$dckh->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('diachikh.show',[$dckh->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['diachikh.destroy', $dckh->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -32,8 +32,8 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

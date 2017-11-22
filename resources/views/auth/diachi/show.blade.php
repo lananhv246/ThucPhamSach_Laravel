@@ -40,8 +40,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                            <a href="{{route('diachikh.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Edit</a>
+                            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                            <a href="{{route('diachikh.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Edit</a>
                         </td>
                     </tr>
                     </tbody>

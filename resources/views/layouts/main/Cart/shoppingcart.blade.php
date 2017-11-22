@@ -10,6 +10,15 @@
                 var qty = $('#CartUp<?php echo $i;?>').val();
                 if(qty <=0){
                     alert('vui lòng nhập đúng số lượng');
+                    $.ajax({
+                        url: '<?php echo url('cart/plus')?>/'+rowid,
+                        type: 'GET',
+                        dataType: 'html',
+                        data: "rowid="+rowid+"& proid="+proid+"& qty="+1,
+                        success: function (data) {
+                            $('#UpdateCart').html(data);
+                        }
+                    });
                 }else{
                     $.ajax({
                         url: '<?php echo url('cart/plus')?>/'+rowid,
@@ -39,14 +48,13 @@
                         <h2>GIỎ HÀNG</h2>
                     </div>
                     <div id="UpdateCart">
-                        <div class="table-responsive col-md-8">
+                        <div class="col-md-8">
                         @if(count($cart))
                             <table class="table table-condensed">
                                 <thead>
                                     <tr class="cart_menu text-center">
                                         <td class="image">Item</td>
-                                        <td class="id_sp">ID</td>
-                                        <td class="name">Tên SP</td>
+                                        <td class="name">Tên Sản Phẩm</td>
                                         <td class="gia">Giá</td>
                                         <td class="thue">Thuế</td>
                                         <td class="quantity">Số Lượng</td>
@@ -61,17 +69,14 @@
                                             <td class="image">
                                                 <a href="{{route('product_detail',[$item->id])}}"><img src="/images/upload/{{   $item->options->has('img') ? $item->options->img : '' }}" alt="" style="width: 180px; height: 150px;" class="img-responsive"></a>
                                             </td>
-                                            <td class="id_sp">
-                                                <a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->id}}</p></span></a>
-                                            </td>
                                             <td class="name">
                                                 <a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->name}}</p></span></a>
                                             </td>
                                             <td class="cart_price">
-                                                <p>${{number_format($item->price,0,",","." )}}</p>
+                                                <p>{{number_format($item->price,0,",","." )}} ₫</p>
                                             </td>
                                             <td class="cart_tax">
-                                                <p>${{number_format($item->tax * $item->qty,0,",","." )}}</p>
+                                                <p>{{number_format($item->tax * $item->qty,0,",","." )}} ₫</p>
                                             </td>
                                             <td class="cart_quantity">
                                                 <div class="cart_quantity_button">
@@ -82,12 +87,12 @@
                                                 </div>
                                             </td>
                                             <td class="cart_total">
-                                                <p class="cart_total_price">${{$item->subtotal}}</p>
+                                                <p class="cart_total_price">{{$item->subtotal}} ₫</p>
                                             </td>
                                             <td class="cart_delete">
                                                 {!! Form::open(['route'=>['deleteshoppingcart.delete-cart',$item->rowId], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}                                    
                                                 <button class="btn green right" type="submit">
-                                                <span class="fa fa-cart-plus fa-2x"></span>
+                                                <span class="fa fa-cart-plus"></span>
                                                 Xóa
                                                 </button>
                                                 {!! Form::close() !!}
@@ -99,7 +104,7 @@
                                     ?> 
                                         <td>
                                             @if($tonkho["soluong"] < $item->qty)
-                                                <p class="text-danger">Số lượng không đù chúng tôi sẽ giao hàng trể cho quý khách khi nhập hàng trong thời gian ngắn nhất nếu đồng ý xin vui lòng đặt hàng</p>
+                                                <p class="text-danger">Số lượng chỉ còn {!! $tonkho["soluong"] !!} không đù chúng tôi sẽ giao hàng trể cho quý khách khi nhập hàng trong thời gian ngắn nhất nếu đồng ý xin vui lòng đặt hàng</p>
                                             @else
                                             @endif
                                         </td> 
@@ -122,23 +127,23 @@
                                         <li>Tổng Số SP: <span> {{count($cart)}} </span></li>
                                     </div>
                                     <div class="sub_total">
-                                        <li>Thuế: <span> {{ Cart::tax()}} </span></li>
+                                        <li>Thuế: <span> {{ Cart::tax()}} ₫ </span></li>
                                     </div>
                                     <div class="sub_total">
-                                        <li>Tổng Giá: <span>{{Cart::total()}} VNĐ</span></li>
+                                        <li>Tổng Giá: <span>{{Cart::total()}} ₫</span></li>
                                     </div>
                                 </ul>
                                 <div class="chose_area">
-                                    <a href="#" class="btn btn-sm red">
-                                        <span class="fa fa-quora fa-2x"></span>Get Quote
-                                    </a>
+                                    {{--  <a href="#" class="btn btn-sm red">
+                                        <span class="fa fa-quora"></span>Get Quote
+                                    </a>  --}}
                                     @if(count($cart))
                                         <a href="{{route('checkout.index')}}" class="btn btn-sm green">
-                                            <span class="fa fa-arrow-circle-right fa-2x"></span>Đặt Hàng
+                                            <span class="fa fa-arrow-circle-right"></span>Đặt Hàng
                                         </a>
                                     @else
                                         <a href="#" class="btn btn-sm green " disabled="disabled">
-                                            <span class="fa fa-arrow-circle-right fa-2x"></span>Đặt Hàng
+                                            <span class="fa fa-arrow-circle-right"></span>Đặt Hàng
                                         </a>
                                     @endif
                                 </div>

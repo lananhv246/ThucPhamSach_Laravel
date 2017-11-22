@@ -10,8 +10,8 @@
                     <th>Tên Trạm</th>
                     <th>Địa Chỉ</th>
                     <th>Điện Thoại</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy Chọn</th>
+                    <th>Tùy Chọn</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,18 +22,18 @@
                         <td>{!! $tram->diachi !!}</td>
                         <td>{!! $tram->dienthoai !!}</td>
                         <td>
-                            <a href="{{route('tramtrungchuyen.show',[$tram->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('tramtrungchuyen.show',[$tram->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['tramtrungchuyen.destroy', $tram->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xoa', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa', ['class'=>'btn btn-success btn-sm']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('tramtrungchuyen.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('tramtrungchuyen.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

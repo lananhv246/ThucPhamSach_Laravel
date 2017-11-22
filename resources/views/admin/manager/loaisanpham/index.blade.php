@@ -9,18 +9,18 @@
                     <th>ID</th>
                     <th>Tên Loại</th>
                     <th>Danh Mục</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy Chọn</th>
+                    <th>Tùy Chọn</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $loaisp)
                     <tr>
                         <td>{!! $loaisp->id !!}</td>
-                        <td>{!! $loaisp->	ten_loai !!}</td>
+                        <td>{!! $loaisp->ten_loai !!}</td>
                         <td>{!! $loaisp->danhmucloai->ten_danhmuc !!}</td>
                         <td>
-                            <a href="{{route('loaisanpham.show',[$loaisp->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('loaisanpham.show',[$loaisp->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['loaisanpham.destroy', $loaisp->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -30,8 +30,8 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('loaisanpham.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('loaisanpham.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

@@ -31,20 +31,20 @@
                 <table class="table table-responsive">
                     <thead>
                     <tr>
-                        <th>Date Time</th>
+                        <th>Ngày Tháng</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{!! $data->created_at !!}</td>
+                        <td>Ngày Thêm: {!! $data->created_at !!}</td>
                     </tr>
                     <tr>
-                        <td>{!! $data->updated_at !!}</td>
+                        <td>Ngày Cập Nhật{!! $data->updated_at !!}</td>
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('hoadonchitiet.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                            <a href="{{route('hoadonchitiet.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil fa-2x"></span>Edit</a>
+                            <a href="{{route('hoadonchitiet.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                            <a href="{{route('hoadonchitiet.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Chỉnh Sửa</a>
                         </td>
                     </tr>
                     </tbody>

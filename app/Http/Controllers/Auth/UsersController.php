@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use  Illuminate\Support\Facades\Input;
 use Session;
 use App\DiaChiKH;
+use Illuminate\Support\MessageBag;
 class UsersController extends Controller
 {
 
@@ -94,13 +97,59 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //validate
+        // $this->validate($request, array(
+        //     'password' => 'required',
+        // ),
+        //     array(
+        //         'password.required' => 'bạn chưa nhập Password',
+        //     ));
+        //validate
         $this->validate($request, array(
-            'password' => 'required',
+            //chua nhap|doc nhat
+            'diachi' => 'required',
+            'dienthoai' => array('required', 'regex:/^(01[2689]|09)[0-9]{8}$/')
         ),
             array(
-                'password.required' => 'bạn chưa nhập Password',
+                'diachi.required' => 'bạn chưa nhập Địa Chỉ',
+                'dienthoai.required' => 'bạn chưa nhập Số Điện Thoại',
+                'dienthoai.regex' => 'Số Điện Thoại chưa chính xác hoặt chưa hổ trợ',
             ));
-        User::findOrFail($id)->update($request->all());
+        $data = User::find($id);
+        $password = $request->input('password');
+        
+        // if( Auth::attempt(['password' =>$password], $request->has('remember'))) {
+            if($request->password_confirmation != $password)
+            {
+                $errors = new MessageBag(['errorlogin' => 'xác nhận mật khẩu không đúng']);
+                return redirect()->back()->withInput()->withErrors($errors);
+                
+            }
+            else{
+                // $data->password = bcrypt($request->password);
+                $data->update(Input::except('password'));
+                if(isset($request->diachi)){
+                    if(isset($data->diachikh)){
+                    $diachi = DiaChiKH::find($data->diachikh->id);
+                    $diachi->id_khachhang = Auth::user()->id;
+                    $diachi->update(Input::except('id_khachhang'));
+                    }
+                    else{
+                        $dckh = new DiaChiKH($request->input());
+                        $dckh->id_khachhang = Auth::user()->id;
+                        $dckh->save();
+                    }
+                }
+                else{
+                    // $data->update(Input::except('password'));
+                
+                }
+            }
+        // }
+        // else {
+        //     $errors = new MessageBag(['errorlogin' => 'mật khẩu không đúng']);
+        //         return redirect()->back()->withInput()->withErrors($errors);
+        //     }
+        
         Session::flash('success','Thành Công');
         return redirect()->route('users.show',$id);
     }

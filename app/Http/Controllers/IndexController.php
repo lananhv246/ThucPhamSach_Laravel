@@ -15,14 +15,14 @@ class IndexController extends Controller
 {
     public function index(){
         $topnew = SanPham::orderBy('id','DESC')->take(10)->get();
-        $topsave = SanPham::where('giamgia','>',0)->take(10)->get();
+        $topsale = SanPham::where('giamgia','>',0)->take(10)->get();
         $danhmuc = DanhMucLoai::orderBy('id','ASC')->with('loaisanpham');
         $dm = DanhMucLoai::pluck('ten_danhmuc','id');
         $data = SanPham::orderBy('id','DESC')->with('phieunhapchitiet')->paginate(12);
         $search = SanPham::all();
         $sanpham = DanhMucLoai::find(1);
         $sanpham2 = DanhMucLoai::find(2);
-        return view('layouts.main.index', compact('data','danhmuc','topnew','topsave','dm', 'sanpham', 'sanpham2','search'));
+        return view('layouts.main.index', compact('data','danhmuc','topnew','topsale','dm', 'sanpham', 'sanpham2','search'));
     }
     public function product_detail($id){
         $data = SanPhamChiTiet::where('id_sanpham',$id)->first();

@@ -1,11 +1,11 @@
 @extends('admin.admin_home')
 @section('admins')
     <div class="col-md-8 col-md-offset-2">
-        <h1>Update New</h1>
+        <h1>Chỉnh Sửa</h1>
         @include('flashmessage.flashmessage')
         {!! Form::model($data, ['route' => ['nhacungcap.update', $data->id], 'method' => "PUT", 'files' => true, 'enctype'=>'multipart/form-data'  ]) !!}
 
-        {!! Form::label('ten_ncc', 'Name:') !!}
+        {!! Form::label('ten_ncc', 'Tên Nhà Cung Cấp:') !!}
         {!! Form::text('ten_ncc', null, array('class'=>'form-control')) !!}
 
         {!! Form::label('email', 'Email:') !!}
@@ -31,7 +31,7 @@
         {!! Form::label('ghichu', 'Ghi Chú:') !!}
         {!! Form::textarea('ghichu', null, array('class'=>'form-control')) !!}
 
-            {!! Form::submit('submit', array('class'=>'btn btn-success', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-success', 'style' => 'margin:20px 0px')) !!}
             
         {!! Form::close() !!}
     </div>

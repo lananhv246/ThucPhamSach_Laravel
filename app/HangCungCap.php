@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class HangCungCap extends Model
 {
-    use SearchAble;
+    // use SearchAble;
 
     protected $table = 'hang_cung_caps';
     protected $fillable = [
@@ -21,8 +21,8 @@ class HangCungCap extends Model
     public function tramtrungchuyen(){
         return $this->belongsTo(TramTrungChuyen::class, 'id_tram','id' );
     }
-    public function searchableAs()
-    {
-        return 'hangcungcap';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'hangcungcap';
+    // }
 }

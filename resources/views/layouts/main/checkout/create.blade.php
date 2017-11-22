@@ -22,7 +22,7 @@
 
                 {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
 
-            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
             {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
             <script type="text/javascript" src="{{ asset('js/map.js')}}"></script>

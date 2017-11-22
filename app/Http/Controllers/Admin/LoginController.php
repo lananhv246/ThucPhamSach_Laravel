@@ -71,6 +71,6 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }

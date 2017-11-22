@@ -52,7 +52,6 @@ class PhieunhapchitietController extends Controller
             'id_sanpham' => 'required',
             'soluong' => 'required|numeric|digits_between:1,11',
             'dongia' => 'required|numeric|digits_between:1,11',
-            'donvitien'=>'required',
             'donvitinh'=>'required',
         ),
             array(
@@ -64,16 +63,21 @@ class PhieunhapchitietController extends Controller
                 'dongia.required' => 'bạn chưa nhập đơn giá',
                 'dongia.numeric' => 'đơn giá phải là số',
                 'dongia.digits_between' => 'đơn giá quá ký tự qui định',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
                 'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
             ));
         PhieuNhapChiTiet::create($request->all());
+        $sanpham = SanPham::find($request->id_sanpham);
+        $sanpham->giacu = $request->dongia;
+        $sanpham->dongia = $request->dongia - $sanpham->giamgia;
+        $sanpham->donvitinh = $request->donvitinh;
+        $sanpham->save();
         if(TonKho::where('id_sanpham',$request->id_sanpham)->exists()){
             $tonkho = TonKho::where('id_sanpham',$request->id_sanpham)->first();
             $tonkho->id_sanpham = $request->id_sanpham;
             $tonkho->soluong = $tonkho->soluong + $request->soluong;
             $tonkho->save();
         }
+        
         else{
             TonKho::create($request->all());
         }
@@ -126,7 +130,6 @@ class PhieunhapchitietController extends Controller
             'id_sanpham' => 'required',
             'soluong' => 'required|numeric|digits_between:1,11',
             'dongia' => 'required|numeric|digits_between:1,11',
-            'donvitien'=>'required',
             'donvitinh'=>'required',
         ),
             array(
@@ -138,10 +141,24 @@ class PhieunhapchitietController extends Controller
                 'dongia.required' => 'bạn chưa nhập đơn giá',
                 'dongia.numeric' => 'đơn giá phải là số',
                 'dongia.digits_between' => 'đơn giá quá ký tự qui định',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
                 'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
             ));
         PhieuNhapChiTiet::findOrFail($id)->update($request->all());
+        $sanpham = SanPham::find($request->id_sanpham);
+        $sanpham->giacu = $request->dongia;
+        $sanpham->dongia = $request->dongia - $sanpham->giamgia;
+        $sanpham->donvitinh = $request->donvitinh;
+        $sanpham->save();
+        if(TonKho::where('id_sanpham',$request->id_sanpham)->exists()){
+            $tonkho = TonKho::where('id_sanpham',$request->id_sanpham)->first();
+            $tonkho->id_sanpham = $request->id_sanpham;
+            $tonkho->soluong = $tonkho->soluong + $request->soluong;
+            $tonkho->save();
+        }
+        
+        else{
+            TonKho::create($request->all());
+        }
         Session::flash('success','Thành Công');
         return redirect()->route('phieunhapchitiet.show', $id);
     }

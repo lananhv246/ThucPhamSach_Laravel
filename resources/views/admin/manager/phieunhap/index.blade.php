@@ -10,8 +10,8 @@
                     <th>Tên Phiếu</th>
                     <th>Trạm Trung Chuyển</th>
                     <th>Admin</th>
-                    <th>Option</th>
-                    <th>Option</th>
+                    <th>Tùy chọn</th>
+                    <th>Tùy chọn</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,18 +22,22 @@
                         <td>{!! $phieunhap->tramtrungchuyen->ten_tram !!}</td>
                         <td>{!! $phieunhap->admin->email !!}</td>
                         <td>
-                            <a href="{{route('phieunhap.show',[$phieunhap->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('phieunhap.show',[$phieunhap->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Show</a>
                         </td>
+                        @if(count($phieunhap->phieunhapchitiet) > 0)
+                        <td>có dử liệu</td>
+                        @else
                         <td>
                             {!! Form::open(['route'=>['phieunhap.destroy', $phieunhap->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
                             {!! Form::submit('Xoa', ['class'=>'btn btn-success btn-sm']) !!}
                             {!! Form::close() !!}
                         </td>
+                        @endif
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('phieunhap.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                    <a href="{{route('phieunhap.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Create</a>
                 </tr>
                 </tbody>
             </table>

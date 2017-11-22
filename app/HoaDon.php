@@ -13,11 +13,11 @@ use Laravel\Scout\Searchable;
 
 class HoaDon extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'hoa_dons';
      protected $fillable = [
-        'ten_hoadon','id_khachhang','tonggia','tongsoluong','donvitien',
+        'ten_hoadon','id_khachhang','tonggia','tongso_sanpham',
     ];
     public function admin(){
         return $this->belongsTo(Admin::class,'id_admin','id' );
@@ -37,9 +37,9 @@ class HoaDon extends Model
     public function sanpham(){
         return $this->belongsToMany(SanPham::class ,'hoa_don_chi_tiets','id_hoadon','id_sanpham');
     }
-    public function searchableAs()
-    {
-        return 'hoadon';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'hoadon';
+    // }
 
 }

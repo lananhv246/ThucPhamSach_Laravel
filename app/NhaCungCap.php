@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 
 class NhaCungCap extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'nha_cung_caps';
     protected $fillable = 
@@ -19,8 +19,8 @@ class NhaCungCap extends Model
     public function hangcungcap(){
         return $this->hasMany(HangCungCap::class,'id_ncc' );
     }
-    public function searchableAs()
-    {
-        return 'nhacungcap';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'nhacungcap';
+    // }
 }

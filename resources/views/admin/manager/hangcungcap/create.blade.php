@@ -1,7 +1,7 @@
 @extends('admin.admin_home')
 @section('admins')
         <div class="col-md-8 col-md-offset-2">
-            <h1>Create New</h1>
+            <h1>Thêm Mới</h1>
             @include('flashmessage.flashmessage')
             <!-- thong bao loi-->
             {!! Form::open(['route' => 'hangcungcap.store','enctype'=>"multipart/form-data"]) !!}
@@ -17,8 +17,8 @@
                 {!! Form::label('giatri', 'Giá Trị:') !!}
                 {!! Form::text('giatri', null, array('class'=>'form-control')) !!}
 
-            <a href="{{route('hangcungcap.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-            {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            <a href="{{route('hangcungcap.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
         </div>
 @endsection

@@ -9,7 +9,7 @@ use Laravel\Scout\Searchable;
 
 class TramTrungChuyen extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $table = 'tram_trung_chuyens';
      protected $fillable = [
@@ -21,8 +21,8 @@ class TramTrungChuyen extends Model
     public function phieunhap(){
         return $this->hasMany(PhieuNhap::class,'id_tram' );
     }
-    public function searchableAs()
-    {
-        return 'tramtrungchuyen';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'tramtrungchuyen';
+    // }
 }

@@ -8,6 +8,7 @@ use App\User;
 use App\HoaDon;
 use App\TrangThaiDonHang;
 use Session;
+use Carbon\Carbon;
 
 class HoadonController extends Controller
 {
@@ -50,14 +51,29 @@ class HoadonController extends Controller
         $this->validate($request, array(
             //chua nhap|doc nhat
             'id_khachhang' => 'required',
-            'ten_hoadon' => 'required|max:190',
+            // 'ten_hoadon' => 'required|max:190',
+            'tonggia' => 'required|numeric|digits_between:1,11|not_in:0',
+            'tongso_sanpham' => 'required|numeric|digits_between:1,11|not_in:0',
         ),
             array(
                 'id_khachhang.required' => 'bạn chưa nhập Khách hàng',
-                'ten_hoadon.required' => 'bạn chưa nhập Hóa Đơn',
+                // 'ten_hoadon.required' => 'bạn chưa nhập Hóa Đơn',
                 'ten_hoadon.max' => 'hóa đơn quá ký tự qui định',
+                'tonggia.required' => 'bạn chưa nhập tổng tiền',
+                'tonggia.not_in' => 'tổng giá phải lớn hơn 0',
+                'tonggia.numeric' => 'tổng giá phải là số',
+                'tonggia.digits_between' => 'tổng giá sai cấu trúc',
+                'tongso_sanpham.required' => 'bạn chưa nhập số lượng',
+                'tongso_sanpham.numeric' => 'số lượng phải là số',
+                'tongso_sanpham.digits_between' => 'số lượng  cấu trúc',
+                'tongso_sanpham.not_in' => 'tổng số sản phẩm phải lớn hơn 0',
+                // 'tongsoluong.regex' => 'số lượng phải lớn hơn 0',
             ));
-        HoaDon::create($request->all());
+        $datetime = Carbon::now();
+        $khach = User::where('id',$request->id_khachhang)->first();
+        $data = new HoaDon($request->input());
+        $data->ten_hoadon = 'Hóa Đơn của ' . $khach->name . ' ngày ' . $datetime;
+        $data->save();
         Session::flash('success','Thành Công');
         return redirect()->back();
     }
@@ -100,14 +116,27 @@ class HoadonController extends Controller
         $this->validate($request, array(
             //chua nhap|doc nhat
             'id_khachhang' => 'required',
-            'ten_hoadon' => 'required|max:190',
+            // 'ten_hoadon' => 'required|max:190',
+            'tonggia' => 'required|numeric|digits_between:1,11',
+            'tongso_sanpham' => 'required|numeric|digits_between:1,11',
         ),
             array(
                 'id_khachhang.required' => 'bạn chưa nhập Khách hàng',
-                'ten_hoadon.required' => 'bạn chưa nhập Hóa Đơn',
+                // 'ten_hoadon.required' => 'bạn chưa nhập Hóa Đơn',
                 'ten_hoadon.max' => 'hóa đơn quá ký tự qui định',
+                'tongso_sanpham.required' => 'bạn chưa nhập số lượng',
+                'tongso_sanpham.numeric' => 'số lượng phải là số',
+                'tongso_sanpham.digits_between' => 'số lượng  cấu trúc',
+                // 'tongsoluong.regex' => 'số lượng phải lớn hơn 0',
+                'tonggia.required' => 'bạn chưa nhập tổng tiền',
+                'tonggia.numeric' => 'tổng giá phải là số',
+                'tonggia.digits_between' => 'tổng giá sai cấu trúc',
             ));
-        HoaDon::findOrFail($id)->update($request->all());
+        $datetime = Carbon::now();
+        $khach = User::where('id',$request->id_khachhang)->first();
+        $data = HoaDon::findOrFail($id);
+        $data->ten_hoadon = 'Hóa Đơn của ' . $khach->name . ' ngày ' . $datetime;
+        $data->update(Input::except('ten_hoadon'));
         Session::flash('success','Thành Công');
         return redirect()->route('hoadon.show', $id);
     }

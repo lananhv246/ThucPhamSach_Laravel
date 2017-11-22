@@ -20,7 +20,7 @@
                         <td>{!! $data->name !!}</td>
                         <td>{!! $data->email !!}</td>
                         <td>
-                            <a href="{{route('admins.show',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Show</a>
+                            <a href="{{route('admins.show',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Show</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['admins.destroy', $data->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -30,8 +30,8 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
-                    <a href="{{route('admins.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Create</a>
+                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                    <a href="{{route('admins.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Create</a>
                 </tr>
                 </tbody>
             </table>

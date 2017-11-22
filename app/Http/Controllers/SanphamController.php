@@ -10,6 +10,7 @@ use File;
 use Illuminate\Support\Facades\Input;
 use Session;
 use App\PhieuNhapChiTiet;
+use App\TonKho;
 
 class SanphamController extends Controller
 {
@@ -52,18 +53,16 @@ class SanphamController extends Controller
             //chua nhap|doc nhat
             'id_loai' => 'required',
             'ten_sanpham' => 'required',
-            'giacu' => 'required',
-            'donvitien' => 'required',
+            // 'dongia' => 'required',
             'donvitinh' => 'required',
             'giamgia' => 'required|max:190',
-            'giacu' => 'required|max:190',
+            // 'giacu' => 'required|max:190',
             'image' => 'required',
         ),
             array(
                 'id_loai.required' => 'bạn chưa nhập loại sản phẩm',
                 'ten_sanpham.required' => 'bạn chưa nhập sản phẩm',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
-                'giacu.required' => 'bạn chưa nhập đơn giá',
+                'dongia.required' => 'bạn chưa nhập đơn giá',
                 'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
                 'giamgia.required' => 'bạn chưa nhập giảm giá',
                 'giamgia.max' => 'giảm giá quá ký tự',
@@ -78,9 +77,14 @@ class SanphamController extends Controller
         $file_image->resize(300, 200);
         $file_image->save($path.$filename);
         $data = new SanPham($request->input());
-        $data->dongia = $request->giacu * ( 1 - $request->giamgia);
+        $data->dongia = 0;//$request->giacu * ( 1 - $request->giamgia);
+        $data->giacu = 0;
         $data->image = $filename;
         $data->save();
+        $tonkho = new TonKho();
+        $tonkho->id_sanpham = $data->id;
+        $tonkho->soluong = 0;
+        $tonkho->save();
         Session::flash('success','Thành Công');
         return redirect()->back();
     }
@@ -128,7 +132,6 @@ class SanphamController extends Controller
             'id_loai' => 'required',
             'ten_sanpham' => 'required',
             'giacu' => 'required',
-            'donvitien' => 'required',
             'donvitinh' => 'required',
             'giamgia' => 'required|max:190',
             'giacu' => 'required|max:190',
@@ -137,7 +140,6 @@ class SanphamController extends Controller
             array(
                 'id_loai.required' => 'bạn chưa nhập loại sản phẩm',
                 'ten_sanpham.required' => 'bạn chưa nhập sản phẩm',
-                'donvitien.required' => 'bạn chưa nhập đơn vị tiền',
                 'giacu.required' => 'bạn chưa nhập đơn giá',
                 'donvitinh.required' => 'bạn chưa nhập đơn vị tính',
                 'giamgia.required' => 'bạn chưa nhập giảm giá',

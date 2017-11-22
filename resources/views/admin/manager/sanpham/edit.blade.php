@@ -15,14 +15,11 @@
             {!! Form::label('giacu', 'Giá:') !!}
             {!! Form::text('giacu', null, array('class'=>'form-control')) !!}
 
-            {!! Form::label('donvitien', 'Đơn Vị Tiền:') !!}
-            {!! Form::text('donvitien', null, array('class'=>'form-control')) !!}
-
             {!! Form::label('donvitinh', 'Đơn Vị Tính:') !!}
-            {!! Form::text('donvitinh', null, array('class'=>'form-control')) !!}
+            {!! Form::select("donvitinh", ["kg" => "Kilogam", "Bó" => "Bó"], $data->donvitinh, ["class" => "form-control", "placeholder" => "Chọn đơn vị tính..."]) !!}
 
             {!! Form::label('giamgia', 'Giảm Giá:') !!}
-            {!! Form::select('giamgia', ['0.05' => '5%', '0.1' => '10%', '0.2' => '20%'], $data->giamgia, ['class' => 'form-control']) !!}
+            {!! Form::select('giamgia', ['0' => '0%','0.05' => '5%', '0.1' => '10%', '0.2' => '20%'], $data->giamgia, ['class' => 'form-control']) !!}
 
             {!! Form::label('image', 'Hình Ảnh:') !!}
             {!! Form::file('image', array('class'=>'form-control')) !!}

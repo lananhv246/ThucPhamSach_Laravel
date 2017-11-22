@@ -17,12 +17,22 @@ class CartController extends Controller
 {
     public function cart($id) {
        $product = SanPham::where('id', $id)->first();
-        Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => 1, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitien'=>$product->donvitien, 'donvitinh'=>$product->donvitinh)));
+        Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => 1, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitinh'=>$product->donvitinh)));
         Session::flash('success','Sản Phẩm Đả Thêm Vào Giỏ Hàng');
         return redirect('/');
     }
     public function updateQtyPlus(Request $request,$id)
     {
+        //validate
+        $this->validate($request, array(
+            
+            'qty' => 'required|numeric|digits_between:1,11',
+        ),
+            array(
+                'qty.required' => 'bạn chưa nhập số lượng',
+                'qty.numeric' => 'Số lượng phải là số',
+                'qty.digits_between' => 'số lượng sai cấu trúc',
+            ));
         $rowid = $request->rowid;
         $proid = $request->proid;
         $qty = $request->qty;

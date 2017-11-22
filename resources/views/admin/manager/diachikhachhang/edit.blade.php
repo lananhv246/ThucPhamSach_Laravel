@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
         <div class="col-md-7 col-md-offset-2">
-            <h1>Update New</h1>
+            <h1>Chỉnh Sửa</h1>
             @include('flashmessage.flashmessage')
             <!-- thong bao loi-->
             {!! Form::model($data, ['route' => ['diachikh.update', $data->id], 'method' => "PUT", 'files' => true, 'enctype'=>'multipart/form-data'  ]) !!}
@@ -24,7 +24,7 @@
 
                 {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
 
-                {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
 
             {!! Form::close() !!}
             <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>

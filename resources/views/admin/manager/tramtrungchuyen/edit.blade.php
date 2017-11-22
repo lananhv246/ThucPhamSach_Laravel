@@ -1,7 +1,7 @@
 @extends('admin.admin_home')
 @section('admins')
         <div class="col-md-8 col-md-offset-2">
-            <h1>Update New</h1>
+            <h1>Chỉnh Sửa</h1>
             @include('flashmessage.flashmessage')
             {!! Form::model($data, ['route' => ['tramtrungchuyen.update', $data->id], 'method' => "PUT", 'files' => true, 'enctype'=>'multipart/form-data'  ]) !!}
 
@@ -23,9 +23,9 @@
 
             {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
 
-            <a href="{{route('tramtrungchuyen.show',[$data->id]) }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+            <a href="{{route('tramtrungchuyen.show',[$data->id]) }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
 
-            {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm ', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm ', 'style' => 'margin:20px 0px')) !!}
 
             {!! Form::close() !!}
         </div>

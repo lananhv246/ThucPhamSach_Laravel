@@ -1,7 +1,7 @@
 @extends('admin.admin_home')
 @section('admins')
         <div class="col-md-8 col-md-offset-2">
-            <h1>Update New</h1>
+            <h1>Chỉnh Sửa</h1>
             @include('flashmessage.flashmessage')
             {!! Form::model($data, ['route' => ['phieunhapchitiet.update', $data->id], 'method' => "PUT", 'files' => true, 'enctype'=>'multipart/form-data'  ]) !!}
 
@@ -19,13 +19,10 @@
                 {!! Form::label('dongia', 'Đơn Giá:') !!}
                 {!! Form::text('dongia', null, array('class'=>'form-control')) !!}
 
-            {!! Form::label('donvitien', 'Đơn Vị Tiền:') !!}
-            {!! Form::text('donvitien', null, array('class'=>'form-control')) !!}
-
             {!! Form::label('donvitinh', 'Đơn Vị Tính:') !!}
-            {!! Form::text('donvitinh', null, array('class'=>'form-control')) !!}
+            {!! Form::select("donvitinh", ["kg" => "Kilogam", "Bó" => "Bó"], $data->donvitinh, ["class" => "form-control", "placeholder" => "Chọn đơn vị tính..."]) !!}
 
-                {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
 
             {!! Form::close() !!}
         </div>

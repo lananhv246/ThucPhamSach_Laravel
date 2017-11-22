@@ -1,10 +1,10 @@
 @extends('admin.admin_home')
 @section('admins')
         <div class="col-md-offset-1 col-md-10">
-            <h1>Create New</h1>
+            <h1>Thêm Mới</h1>
             @include('flashmessage.flashmessage')
             <div class="how-to-create restmenuwrap" >
-                <h3>Images <span id="photoCounter"></span></h3>
+                <h3>Hình Ảnh <span id="photoCounter"></span></h3>
                 <br />
                 <!--form upload-->
                 {!! Form::open(['route' => 'imagelist.create','enctype'=>"multipart/form-data",'files' => true, 'class'=>'dropzone dz-clickable', 'id'=>'my-awesome-dropzone']) !!}
@@ -23,7 +23,7 @@
                 {!! Form::close() !!}
                 <!--token-->
             </div>
-            <a href="{{route('imagelist.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+            <a href="{{route('imagelist.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
 
         </div>
     </div>

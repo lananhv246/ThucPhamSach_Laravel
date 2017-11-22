@@ -1,5 +1,5 @@
-@extends('admin.admin_home')
-@section('admins')
+@extends('layouts.master')
+@section('content')
         <div class="col-md-8 col-md-offset-2">
             <h1>Create New</h1>
             @include('flashmessage.flashmessage')
@@ -22,7 +22,7 @@
 
                 {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
 
-            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left fa-2x"></span>Back</a>
+            <a href="{{route('diachikh.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
             {!! Form::submit('submit', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
             <script type="text/javascript" src="{{ asset('js/map.js')}}"></script>

@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  Route::group(['middleware'=>'web'], function () {
     Route::group(['prefix'=>'admin'], function () {
         Route::resource('admins','Admin\AdminsController');
-        Route::get('',['as'=>'admin.home','uses'=>'AdminController@getindex']);
+        Route::get('',['as'=>'admin.home','uses'=>'ManagerDashboardController@index']);
         Route::get('login','Admin\LoginController@showLoginForm');
         Route::post('login','Admin\LoginController@login');
         Route::get('logout','Admin\LoginController@logout');
@@ -58,6 +58,8 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('phieuxuatkhochitiet','PhieuxuatkhochitietController');
         //phieuxuatkho
         Route::resource('phieuxuatkho','PhieuxuatkhoController');
+        Route::get('phieuxuatkho/createnewoldorder/{id}',['as'=>'phieuxuatkho.createnewoldorder','uses'=>'PhieuxuatkhoController@createnewoldorder']);
+        Route::post('phieuxuatkho/storenewoldorder/{id}',['as'=>'phieuxuatkho.storenewoldorder','uses'=>'PhieuxuatkhoController@storenewoldorder']);
         //nhacc
         Route::resource('nhacungcap','NhacungcapController');
         //phieunhap

@@ -13,7 +13,7 @@ class PhieuNhapChiTiet extends Model
 
     protected $table = 'phieu_nhap_chi_tiets';
      protected $fillable = [
-        'id_phieunhap','id_sanpham','soluong','dongia','donvitien','donvitinh',
+        'id_phieunhap','id_sanpham','soluong','dongia','donvitinh',
     ];
     public function phieunhap(){
         return $this->belongsTo(PhieuNhap::class,'id_phieunhap','id');
@@ -21,8 +21,8 @@ class PhieuNhapChiTiet extends Model
     public function sanpham(){
         return $this->belongsTo(SanPham::class,'id_sanpham','id');
     }
-    public function searchableAs()
-    {
-        return 'phieunhapchitiet';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'phieunhapchitiet';
+    // }
 }
