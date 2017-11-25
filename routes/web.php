@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/carousel', function () {
-   return view('layouts.main.carousel');
+   return view('layouts.fontend-layouts.master');
 
 });
 //sopping cart

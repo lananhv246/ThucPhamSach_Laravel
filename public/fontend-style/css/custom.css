@@ -1,0 +1,6 @@
+/* your styles go here */
+.btn-none:hover{
+     background-color: rgba(251, 251, 251, 0);
+     color: #333;
+     border-color: #ccc;
+}

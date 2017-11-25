@@ -23,6 +23,8 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
     {{--  <script src="{{ asset('js/js.js') }}"></script>  --}}
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/fontend-style/img/favicon.png">
 </head>
 <body>
     @if(Auth::guard('admin')->check())
