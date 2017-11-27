@@ -75,6 +75,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users','Auth\UsersController');
     Route::resource('checkout', 'CheckoutController');
+    Route::get('/checkout1',['as'=>'checkout1','uses'=>'IndexController@checkout1']);
+    Route::get('/checkout2',['as'=>'checkout2','uses'=>'IndexController@checkout2']);
 });
 
 Route::get('/carousel', function () {
@@ -100,3 +102,8 @@ Route::get('/chitiet/{id}',['as'=>'product_detail', 'uses'=>'IndexController@pro
 
 //search
 Route::post('/search',['as'=>'search','uses'=>'IndexController@search']);
+Route::get('/search',['as'=>'search','uses'=>'IndexController@getsearch']);
+
+Route::get('gioithieu',['as'=>'gioithieu', 'uses'=>'IndexController@gioithieu']);
+Route::get('tintuc',['as'=>'tintuc', 'uses'=>'IndexController@tintuc']);
+Route::get('lienhe',['as'=>'lienhe', 'uses'=>'IndexController@lienhe']);

@@ -7,3 +7,7 @@
 #all{
     margin-top: 100px;
 }
+#map-canvas{
+    width: 625px;
+    height: 250px;
+}

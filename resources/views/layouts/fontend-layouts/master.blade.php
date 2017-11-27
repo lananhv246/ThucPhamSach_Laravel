@@ -5,9 +5,6 @@
 <!-- Mirrored from minimal.ondrejsvestka.cz/1-3-3/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Nov 2017 09:51:10 GMT -->
 <head>
     <meta charset="utf-8">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Mario Shop online</title>
 
@@ -38,22 +35,6 @@
 <body class="no-padding">
     @include('layouts.fontend-layouts.navbar')
     @yield('content')
-    {{--  @include('layouts.fontend-layouts.index')  --}}
-    {{--  @include('layouts.fontend-layouts.detail')  --}}
-    {{--  @include('layouts.fontend-layouts.blog')  --}}
-    {{--  @include('layouts.fontend-layouts.category-full')  --}}
-    {{--  @include('layouts.fontend-layouts.category')  --}}
-    {{--  @include('layouts.fontend-layouts.contact')  --}}
-    {{--  @include('layouts.fontend-layouts.customer-account')  --}}
-    {{--  @include('layouts.fontend-layouts.customer-orders')  --}}
-    {{--  @include('layouts.fontend-layouts.customer-order')  --}}
-    {{--  @include('layouts.fontend-layouts.post')  --}}
-    {{--  @include('layouts.fontend-layouts.register')  --}}
-    {{--  @include('layouts.fontend-layouts.shopping')  --}}
-    {{--  @include('layouts.fontend-layouts.checkout1')  --}}
-    {{--  @include('layouts.fontend-layouts.checkout2')  --}}
-    {{--  @include('layouts.fontend-layouts.checkout3')   --}}
-    {{--  @include('layouts.fontend-layouts.checkout4')  --}}
     @include('layouts.fontend-layouts.footer')
     <!-- #### JAVASCRIPT FILES ### -->
 

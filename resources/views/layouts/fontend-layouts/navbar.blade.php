@@ -10,7 +10,7 @@ _________________________________________________________ -->
             <div class="navbar-header">
 
                 <a class="navbar-brand home" href="/">
-                    <img src="/fontend-style/img/logo.png" alt="Minimal logo" class="hidden-xs hidden-sm">
+                    <img src="/fontend-style/img/logos.png" alt="Minimal logo" class="hidden-xs hidden-sm">
                     <img src="/fontend-style/img/logo-small.png" alt="Minimal logo" class="visible-xs visible-sm"><span class="sr-only">Trang chủ</span>
                 </a>
                 <div class="navbar-buttons">
@@ -74,9 +74,9 @@ _________________________________________________________ -->
                             </li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Giới Thiệu</a>
+                    <li><a href="{{route('gioithieu')}}">Giới Thiệu</a>
                     </li>
-                    <li><a href="contact.html">Tin Tức</a>
+                    <li><a href="{{route('tintuc')}}">Tin Tức</a>
                     </li>
                     <li><a href="#footer">Liên Hệ</a>
                     </li>
@@ -86,7 +86,7 @@ _________________________________________________________ -->
             <!--/.nav-collapse -->
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">({{count(Cart::content())}}) <span class="hidden-md">Giỏ</span></span></a>
+                <a href="{{route('shopping')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">({{count(Cart::content())}}) <span class="hidden-md">Giỏ</span></span></a>
             </div>
             <!--/.nav-collapse -->
 
@@ -135,8 +135,7 @@ _________________________________________________________ -->
 
     <!-- *** NAVBAR END *** -->
 
-    <!-- *** LOGIN MODAL ***
-_________________________________________________________ -->
+    <!-- *** LOGIN MODAL ***_______________ -->
 
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
         <div class="modal-dialog">
@@ -177,7 +176,7 @@ _________________________________________________________ -->
                                 </div>
                             </div>
                         <p class="text-center">
-                            <button id="login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            <button id="login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Đăng Nhập</button>
                         </p>
                     </form>
                     {{--  <button id="register" class="btn btn-primary"><i class="fa fa-sign-in"></i> Register</button>  --}}

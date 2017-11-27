@@ -140,7 +140,7 @@
                                 </div>
                                 <div class="pull-right">
                                     @if(count($cart))  
-                                        <a href="{{route('checkout.index')}}" type="button" class="btn btn-primary">Kiểm tra đơn hàng <i class="fa fa-chevron-right"></i>
+                                        <a href="{{route('checkout1')}}" type="button" class="btn btn-primary">Kiểm tra đơn hàng <i class="fa fa-chevron-right"></i>
                                         </a>
                                     @else
                                         <a href="#" type="button" class="btn btn-primary" disabled="disabled">

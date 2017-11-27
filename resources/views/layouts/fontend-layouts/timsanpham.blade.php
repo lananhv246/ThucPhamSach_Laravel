@@ -87,6 +87,9 @@
                     <div class="row products">
                     <?php $count = 1; ?>
                         @foreach($search as $data)
+
+                        @if($data->tonkho["soluong"] == 0)
+                        @else
                         <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idsanpham" id="idsanpham<?php echo $count;?>" value="{!!$data->id !!}"/>
                         <input type="hidden" name="ten_sampham" id="tensanpham<?php echo $count;?>" value="{!!$data->ten_sanpham !!}"/>
@@ -262,6 +265,7 @@
                             </div>
                             <!-- /.modal -->
                             <?php $count++?>
+                            @endif
                         @endforeach
                         <!-- /.col-md-4 -->
 

@@ -101,20 +101,14 @@
 
                 </div>
 
-                <div class="box info-bar full-width no-border">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 products-showing">
-                            Hiển thị <strong>12</strong> của <strong>25</strong> sản phẩm
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row products">
                     <?php $count = 1; ?>
                 @if(count($data->loaisanpham) != 0)
                     @foreach($data->loaisanpham as $loaisanpham)
                         @if(count($loaisanpham->sanpham) != 0)
                             @foreach($loaisanpham->sanpham as $data)
+                            @if($data->tonkho["soluong"] == 0)
+                            @else
                             <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idsanpham" id="idsanpham<?php echo $count;?>" value="{!!$data->id !!}"/>
                             <input type="hidden" name="ten_sampham" id="tensanpham<?php echo $count;?>" value="{!!$data->ten_sanpham !!}"/>
@@ -134,7 +128,7 @@
                                         <!-- /.image -->
                                                 
                                                 <div class="image">
-                                                    <a href="detail.html">
+                                                    <a href="{{route('product_detail',[$data->id])}}">
                                                         <img class="img-responsive" src="/images/upload/{!! $data->image !!}" alt="...">
                                                     </a>
                                                     <div class="quick-view-button">
@@ -157,7 +151,7 @@
                                             @if($data->id > 40)
                                                 <!-- top -->
                                                 <div class="text">
-                                                    <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
                                                 </div>
@@ -172,7 +166,7 @@
                                             @else
                                             <!--nomal -->
                                                 <div class="text">
-                                                    <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price">
                                                     {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -184,7 +178,7 @@
                                                 <!-- top sale -->
 
                                                 <div class="text">
-                                                    <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -206,7 +200,7 @@
                                                 <!--sale -->
 
                                                 <div class="text">
-                                                    <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -282,6 +276,7 @@
                                 </div>
                                 <!-- /.modal -->
                                 <?php $count++?>
+                                @endif
                             @endforeach
                         
                         @else

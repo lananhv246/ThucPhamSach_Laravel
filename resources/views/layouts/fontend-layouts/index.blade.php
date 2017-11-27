@@ -201,6 +201,8 @@
             <div class="container">
                 <div class="col-sm-12">
                     <div class="box text-center">
+
+                @include('flashmessage.flashmessage')
                         <h3 class="text-uppercase">Sản Phẩm Mới</h3>
 
                         <h4 class="text-muted"><span class="accent">Miễn phí giao hàng </span>tất cả hóa đơn</h4>
@@ -208,6 +210,8 @@
                     <div class="row products">
                     <?php $count = 1; ?>
                         @foreach($sanphamnew as $data)
+                        @if($data->tonkho["soluong"] == 0)
+                        @else
                         <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idsanpham" id="idsanpham<?php echo $count;?>" value="{!!$data->id !!}"/>
                         <input type="hidden" name="ten_sampham" id="tensanpham<?php echo $count;?>" value="{!!$data->ten_sanpham !!}"/>
@@ -218,15 +222,6 @@
                         <input type="hidden" name="image" id="image<?php echo $count;?>" value="{!! $data->image !!}"/>
                         @if(isset($data->sanphamchitiet))
                         <input type="hidden" name="chitietsanpham" id="chitietsanpham<?php echo $count;?>" value="{!! str_limit($data->sanphamchitiet['mieuta'],150,'....') !!}"/>
-                            <?php $count1 = 1; ?>
-                            @foreach($data->sanphamchitiet->imagelist as $image)
-                            @if(isset($image))
-                            <input type="hidden" name="imagelist" id="imagelist<?php echo $count1;?>" value="{!! $image->duongdan !!}"/>
-                            @else
-                            <input type="hidden" name="imagelist" id="imagelist<?php echo $count1;?>" value="Chưa có thông tin chi tiết"/>
-                            @endif
-                            <?php $count1++; ?>
-                            @endforeach
                         @else
                         <input type="hidden" name="chitietsanpham" id="chitietsanpham<?php echo $count;?>" value="Chưa có thông tin chi tiết"/>
                         @endif
@@ -235,7 +230,7 @@
                                     <!-- /.image -->
 
                                             <div class="image">
-                                                <a href="detail.html">
+                                                <a href="{{route('product_detail',[$data->id])}}">
                                                     <img class="img-responsive" src="/images/upload/{!! $data->image !!}" alt="...">
                                                 </a>
                                                 <div class="quick-view-button">
@@ -258,7 +253,7 @@
                                         @if($data->id > 40)
                                             <!-- top -->
                                             <div class="text">
-                                                <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                 <p class="price"> {!! number_format($data->dongia,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</p>
                                             </div>
@@ -273,7 +268,7 @@
                                         @else
                                         <!--nomal -->
                                             <div class="text">
-                                                <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                 <p class="price">
                                                 {!! number_format($data->dongia,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</p>
@@ -285,7 +280,7 @@
                                             <!-- top sale -->
 
                                             <div class="text">
-                                                <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                 <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</p>
@@ -307,7 +302,7 @@
                                             <!--sale -->
 
                                             <div class="text">
-                                                <h3><a href="detail.html">{{$data->ten_sanpham}}</a></h3>
+                                                <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                 <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                 ₫/{!! $data->donvitinh !!}</p>
@@ -383,6 +378,7 @@
                             </div>
                             <!-- /.modal -->
                             <?php $count++?>
+                        @endif
                         @endforeach
                         <!-- /.col-md-4 -->
 
@@ -449,7 +445,7 @@ _________________________________________________________ -->
                                 <p class="intro">Khi nói đến việc mua thực phẩm hàng ngày ở Việt Nam, người tiêu dùng hầu như không có sự lựa chọn nào khác ngoài thực phẩm không rõ nguồn gốc xuất xứ
                                  Ngày càng xuất hiện thêm nhiều mối lo ngại đến thực phẩm nghèo chất dinh dưỡng và lạm dụng chất bảo quản.Báo chí hàng ngày nhan nhản các tin tức về thực phẩm bẩn.
                                  Do đó, vấn đề an toàn thực phẩm ngày càng được chú trọng.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Đọc thêm</a>
+                                <p class="read-more"><a href="{{route('tintuc')}}" class="btn btn-primary">Đọc thêm</a>
                                 </p>
                             </div>
 

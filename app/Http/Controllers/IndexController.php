@@ -10,12 +10,13 @@ use App\DanhMucLoai;
 use App\PhieuNhap;
 use App\User;
 use App\SanPhamChiTiet;
+use Cart;
+use Auth;
+use App\DiaChiKH;
 
 class IndexController extends Controller
 {
     public function index(){
-        $topnew = SanPham::orderBy('id','DESC')->take(10)->get();
-        $topsale = SanPham::where('giamgia','>',0)->take(10)->get();
         $danhmuc = DanhMucLoai::orderBy('id','ASC')->with('loaisanpham');
         $dm = DanhMucLoai::pluck('ten_danhmuc','id');
         $sanphamnew = SanPham::orderBy('id','DESC')->paginate(12);
@@ -55,10 +56,35 @@ class IndexController extends Controller
         $search = SanPham::search($request->search)->get();
         return view('layouts.fontend-layouts.timsanpham', compact('search'));
     }
-    public function postsearch(Request $request)
+    public function getsearch(Request $request)
     {
         $search = SanPham::search($request->search)->get();
         return view('layouts.fontend-layouts.timsanpham', compact('search'));
+    }
+    public function checkout1(){
+        $cart = Cart::content();
+        $data = Auth::user();
+        $thongtin = DiaChiKH::where('id_khachhang',$data->id)->first();
+         return view('layouts.fontend-layouts.checkout1',compact('data','cart','thongtin'));
+    }
+    public function checkout2(){
+        $cart = Cart::content();
+        $data = Auth::user();
+        $thongtin = DiaChiKH::where('id_khachhang',$data->id)->first();
+         return view('layouts.fontend-layouts.checkout4',compact('data','cart','thongtin'));
+    }
+
+    public function gioithieu()
+    {
+        return view('layouts.fontend-layouts.info');
+    }
+    public function tintuc()
+    {
+        return view('layouts.fontend-layouts.blog');
+    }
+    public function lienhe()
+    {
+        return view('layouts.fontend-layouts.contact');
     }
 
 }

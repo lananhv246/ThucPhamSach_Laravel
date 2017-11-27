@@ -138,7 +138,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Đăng Ký</button>
                         </div>
                     </form>
                 </div>
@@ -198,7 +198,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Đăng Nhập</button>
                         </div>
                     </form>
                 </div>

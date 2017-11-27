@@ -143,11 +143,11 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Tiếp tục mua hàng</a>
+                                    <a href="{{route('product_full')}}" class="btn btn-default"><i class="fa fa-chevron-left"></i> Tiếp tục mua hàng</a>
                                 </div>
                                 <div class="pull-right">
                                     @if(count($cart))  
-                                        <a href="{{route('checkout.index')}}" type="button" class="btn btn-primary">Kiểm tra đơn hàng <i class="fa fa-chevron-right"></i>
+                                        <a href="{{route('checkout1')}}" type="button" class="btn btn-primary">Kiểm tra đơn hàng <i class="fa fa-chevron-right"></i>
                                         </a>
                                     @else
                                         <a href="#" type="button" class="btn btn-primary" disabled="disabled">
@@ -171,12 +171,12 @@
                         <div class="col-md-3">
                             <div class="product">
                                 <div class="image">
-                                    <a href="detail.html">
+                                    <a href="{{route('product_detail',[$sp->id])}}">
                                         <img src="/images/upload/{{$sp->image}}" alt="" class="img-responsive image1">
                                     </a>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="detail.html">{{$sp->ten_sanpham}}</a></h3>
+                                    <h3><a href="{{route('product_detail',[$sp->id])}}">{{$sp->ten_sanpham}}</a></h3>
                                     @if($sp->giamgia != 0)
                                         <p class="price"><del>{!! number_format($sp->giacu,0,",","." ) !!} </del> 
                                         {!! number_format($sp->dongia,0,",","." ) !!} 
@@ -207,15 +207,15 @@
                                 <tbody>
                                     <tr>
                                         <td>Tổng giá đơn hàng</td>
-                                        <th>{{Cart::subtotal()}} ₫</th>
+                                        <th>{{Cart::subtotal()}}₫</th>
                                     </tr>
                                     <tr>
                                         <td>Thuế</td>
-                                        <th>{{ Cart::tax()}} ₫</th>
+                                        <th>{{ Cart::tax()}}₫</th>
                                     </tr>
                                     <tr class="total">
                                         <td>Tổng tiền</td>
-                                        <th>{{Cart::total()}} ₫</th>
+                                        <th>{{Cart::total()}}₫</th>
                                     </tr>
                                 </tbody>
                             </table>

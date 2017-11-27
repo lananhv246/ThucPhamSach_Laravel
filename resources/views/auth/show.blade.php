@@ -5,6 +5,23 @@
 <div id="all">
     <div id="content">
         <div class="container">
+        <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a>
+                    </li>
+                    <li>Trang cá nhân</li>
+                </ul>
+                <div class="box text-center">
+
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <h1>Trang cá nhân</h1>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
             <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="text-center panel-heading"><h3><dt>{!! $data->name !!}</dt></h3></div>
@@ -45,10 +62,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="/" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                                <a href="/" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Back</a>
                             </td>
                             <td>
-                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Edit</a>
+                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Edit</a>
                             </td>
                         </tr>
                         </tbody>
@@ -67,12 +84,12 @@
                     {!! Form::hidden('lat', null, array('class'=>'form-control', 'id'=>'lat')) !!}
 
                     {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
-                            <a href="{{route('diachikh.edit',[$data->diachikh->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
+                            <a href="{{route('diachikh.edit',[$data->diachikh->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
                             <tr>Ngày lập thông tin: {!! $data->diachikh->created_at !!}| Ngày Cập nhật thông tin: {!! $data->diachikh->updated_at !!}</tr>
                     {!! Form::close() !!}
                         @else
                     <div>Chua có thong tin chi tiết</div>
-                        <a href="{{route('diachikh.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                        <a href="{{route('diachikh.create') }}" type="button" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                         @endif
                 </div>
                 <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>

@@ -34,7 +34,7 @@
 
                 <div class="row" id="productMain">
                     <div class="col-sm-6">
-                        <div id="mainImage">
+                        <div>
                             <img src="/images/upload/{!! $data->image !!}" alt="" class="img-responsive">
                         </div>
                         @if($data->giamgia == 0)
@@ -98,7 +98,7 @@
                             @foreach($data->sanphamchitiet->imagelist as $images)
                             <div class="col-sm-3">
                                 <a href="{{$images->duongdan}}" class="thumb">
-                                    <img src="{{$images->duongdan}}" alt="" class="img-responsive">
+                                    <img src="/{{$images->duongdan}}" alt="" class="img-responsive">
                                 </a>
                             </div>
                             @endforeach

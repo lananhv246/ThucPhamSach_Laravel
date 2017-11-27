@@ -1,4 +1,5 @@
-
+@extends('layouts.fontend-layouts.master')
+@section('content')
     <div id="all">
 
         <div id="content">
@@ -27,9 +28,9 @@
                 <div class="col-md-9 clearfix" id="checkout">
 
                     <div class="box">
-                        <form method="post" action="http://minimal.ondrejsvestka.cz/1-3-3/checkout4.html">
+                        {!! Form::open(['route'=>['checkout.store'], 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="checkout1.html"><i class="fa fa-map-marker"></i><br>Địa chỉ</a>
+                                <li><a href="{{route('checkout1')}}"><i class="fa fa-map-marker"></i><br>Địa chỉ</a>
                                 </li>
                                 {{--  <li><a href="checkout2.html"><i class="fa fa-truck"></i><br>Delivery Method</a>
                                 </li>
@@ -41,52 +42,43 @@
 
                             <div class="content">
                                 <div class="table-responsive">
+                                @if(count($cart))
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th colspan="2">Sản phẩm</th>
                                                 <th>Số lượng</th>
                                                 <th>Đơn giá</th>
-                                                <th>Thuế</th>
                                                 <th>Tổng giá</th>
+                                                <th>Thuế</th>
+                                                <th>Thành tiền</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($cart as $item)
                                             <tr>
                                                 <td>
-                                                    <a href="#">
-                                                        <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                    </a>
+                                                    <a href="{{route('product_detail',[$item->id])}}"><img src="/images/upload/{{   $item->options->has('img') ? $item->options->img : '' }}" alt="" style="width: 180px; height: 150px;" class="img-responsive"></a>
                                                 </td>
-                                                <td><a href="#">White Blouse Armani</a>
+                                                <td><a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->name}}</p></span></a>
                                                 </td>
-                                                <td>2</td>
-                                                <td>$123.00</td>
-                                                <td>$0.00</td>
-                                                <td>$246.00</td>
+                                                <td>{{$item->qty}}</td>
+                                                <td>{{number_format($item->price,0,",","." )}} ₫</td>
+                                                <td>{{number_format($item->subtotal,0,",","." )}} ₫</td>
+                                                <td>{{number_format($item->tax,0,",","." )}} ₫</td>
+                                                <td>{{number_format($item->total,0,",","." )}} ₫</td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="#">
-                                                        <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                    </a>
-                                                </td>
-                                                <td><a href="#">Black Blouse Armani</a>
-                                                </td>
-                                                <td>1</td>
-                                                <td>$200.00</td>
-                                                <td>$0.00</td>
-                                                <td>$200.00</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th colspan="5">Total</th>
-                                                <th>$446.00</th>
+                                                <th colspan="6">Tổng</th>
+                                                <th>{{Cart::total()}}₫</th>
                                             </tr>
                                         </tfoot>
                                     </table>
-
+                                @else
+                                @endif
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
@@ -94,14 +86,16 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="checkout3.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Trở lại Kiểm tra - địa chỉ</a>
+                                    <a href="{{route('checkout1')}}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Trở lại Kiểm tra - địa chỉ</a>
                                 </div>
                                 <div class="pull-right">
                                     <button type="submit" class="btn btn-primary">Đặt hàng<i class="fa fa-chevron-right"></i>
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        
+                        {!! Form::close() !!}
+                        
                     </div>
                     <!-- /.box -->
 
@@ -121,16 +115,20 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
+                                        <td>Tổng số đơn hàng</td>
+                                        <th>{{count($cart)}}</th>
+                                    </tr>
+                                    <tr>
                                         <td>Tổng giá đơn hàng</td>
-                                        <th>$446.00</th>
+                                        <th>{{Cart::subtotal()}}₫</th>
                                     </tr>
                                     <tr>
                                         <td>Thuế</td>
-                                        <th>$0.00</th>
+                                        <th>{{ Cart::tax()}}₫</th>
                                     </tr>
                                     <tr class="total">
                                         <td>Tổng tiền</td>
-                                        <th>$456.00</th>
+                                        <th>{{Cart::total()}}₫</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -147,3 +145,4 @@
         <!-- /#content -->
     </div>
     <!-- /#all -->
+@endsection

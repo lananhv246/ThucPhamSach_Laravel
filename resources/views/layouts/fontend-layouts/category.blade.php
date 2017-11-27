@@ -113,6 +113,9 @@
                         <?php $count = 1; ?>
                         @if(count($loaisanpham->sanpham) != 0)
                             @foreach($loaisanpham->sanpham as $data)
+
+                            @if($data->tonkho["soluong"] == 0)
+                            @else
                             <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="idsanpham" id="idsanpham<?php echo $count;?>" value="{!!$data->id !!}"/>
                             <input type="hidden" name="ten_sampham" id="tensanpham<?php echo $count;?>" value="{!!$data->ten_sanpham !!}"/>
@@ -132,7 +135,7 @@
                                         <!-- /.image -->
                                                 
                                         <div class="image">
-                                            <a href="/chitiet/{{$data->id}}">
+                                            <a href="{{route('product_detail',[$data->id])}}">
                                                 <img class="img-responsive" src="/images/upload/{!! $data->image !!}" alt="...">
                                             </a>
                                             <div class="quick-view-button">
@@ -155,7 +158,7 @@
                                             @if($data->id > 40)
                                                 <!-- top -->
                                                 <div class="text">
-                                                    <h3><a href="/chitiet/{{$data->id}}">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
                                                 </div>
@@ -170,7 +173,7 @@
                                             @else
                                             <!--nomal -->
                                                 <div class="text">
-                                                    <h3><a href="/chitiet/{{$data->id}}">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price">
                                                     {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -182,7 +185,7 @@
                                                 <!-- top sale -->
 
                                                 <div class="text">
-                                                    <h3><a href="/chitiet/{{$data->id}}">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -204,7 +207,7 @@
                                                 <!--sale -->
 
                                                 <div class="text">
-                                                    <h3><a href="/chitiet/{{$data->id}}">{{$data->ten_sanpham}}</a></h3>
+                                                    <h3><a href="{{route('product_detail',[$data->id])}}">{{$data->ten_sanpham}}</a></h3>
                                                     <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</del> {!! number_format($data->dongia,0,",","." ) !!} 
                                                     ₫/{!! $data->donvitinh !!}</p>
@@ -280,6 +283,7 @@
                                 </div>
                                 <!-- /.modal -->
                                 <?php $count++?>
+                                @endif
                             @endforeach
                         
                         @else
@@ -287,20 +291,6 @@
                         <!-- /.col-md-4 -->
                     </div>
                     <!-- /.products -->
-
-
-
-                    <div class="row">
-
-                        <div class="col-md-12 banner">
-                            <a href="#">
-                                <img src="img/banner2.jpg" alt="" class="img-responsive">
-                            </a>
-                        </div>
-
-                    </div>
-
-
                     <div class="pages">
 
                     </div>
@@ -351,14 +341,6 @@
 
                         </div>
                     </div>
-
-                    <div class="banner">
-                        <a href="category.html">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
-                    <!-- /.banner -->
-
                 </div>
                 <!-- /.col-md-3 -->
 

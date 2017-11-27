@@ -43,7 +43,7 @@ _________________________________________________________ -->
 
                     <ul>
                         @foreach($danhmuctop->loaisanpham as $loaitop)
-                        <li><a href="category.html">{{$loaitop->ten_loai}}</a>
+                        <li><a href="{{route('loaisanpham',[$loaitop->id])}}">{{$loaitop->ten_loai}}</a>
                         </li>
                         @endforeach
                     </ul>

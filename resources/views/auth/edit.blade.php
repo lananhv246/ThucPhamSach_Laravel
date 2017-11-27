@@ -28,7 +28,7 @@
                 {!! Form::label('password_confirmation', 'Xác Nhận:') !!}
                 {!! Form::password('password_confirmation', array('class'=>'form-control')) !!}
 
-                {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
                 </div>
                 <div class="col-md-6">
                 @if(isset($data->diachikh))
