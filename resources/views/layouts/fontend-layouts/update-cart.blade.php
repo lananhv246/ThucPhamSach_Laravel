@@ -1,5 +1,4 @@
-@extends('layouts.fontend-layouts.master')
-@section('content')
+
 <script type="text/javascript">
     $(document).ready(function(){
         <?php for ($i=1;$i<1000;$i++) {?>
@@ -33,13 +32,7 @@
         <?php }?>
     });
 </script>
-<div id="all">
-
-    <div id="content">
-        <div class="container">
-            <div id="UpdateCart">
-
-                <div class="col-md-12">
+<div class="col-md-12">
                     <ul class="breadcrumb">
 
                         <li><a href="index-2.html">Trang chủ</a>
@@ -224,11 +217,3 @@
                     </div>
                 </div>
                 <!-- /.col-md-3 -->
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /#content -->
-</div>
-<!-- /#all -->
-@endsection

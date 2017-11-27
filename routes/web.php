@@ -87,14 +87,16 @@ Route::get('/cart/plus/{id}',['as'=>'updateshoppingcartplus','uses'=>'CartContro
 Route::delete('/shopping/delete-cart/{id}',['as'=>'deleteshoppingcart.delete-cart','uses'=>'CartController@delete_cart']);
 Route::get('/shopping',['as'=>'shopping','uses'=>'CartController@shopping']);
 
+//allsanpham
+Route::get('/product_full',['as'=>'product_full', 'uses'=>'IndexController@product_full']);
 
 //loc san pham
-Route::get('loc_sanpham/{id}',['as'=>'locsanpham', 'uses'=>'IndexController@loc_sanpham'])->where('id','[0-9]+');
-Route::get('loc_loai/{id}',['as'=>'locloaisp', 'uses'=>'IndexController@loc_loaisp']);
+Route::get('danhmuc/{id}',['as'=>'danhmuc', 'uses'=>'IndexController@danhmucsanpham'])->where('id','[0-9]+');
+Route::get('loaisanpham/{id}',['as'=>'loaisanpham', 'uses'=>'IndexController@loaisanpham']);
 
 Route::get('choose_danhmuc',['as'=>'choose_danhmuc', 'uses'=>'IndexController@choose_danhmuc']);
 //detail
-Route::get('chitiet/{id}',['as'=>'product_detail', 'uses'=>'IndexController@product_detail']);
+Route::get('/chitiet/{id}',['as'=>'product_detail', 'uses'=>'IndexController@product_detail']);
 
 //search
 Route::post('/search',['as'=>'search','uses'=>'IndexController@search']);

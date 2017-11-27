@@ -82,8 +82,21 @@
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-							<div class="large">25.2k</div>
-							<div class="text-muted">Lược truy cập</div>
+							@if(isset($sanpham))
+							<?php 
+							if(count($sanpham) > 1000){
+							$number = count($sanpham) / 1000;
+						//if you want 2 decimal digits
+							$newVal = number_format($number,3) . 'k';
+							}else{
+								$newVal = count($sanpham);
+							}
+							?>
+							<div class="large">{{ $newVal }}</div>
+							@else
+							<div class="large">0</div>
+							@endif
+							<div class="text-muted">Sản Phẩm</div>
 						</div>
 					</div>
 				</div>
@@ -158,10 +171,12 @@
 					<div class="panel-body easypiechart-panel">
 						<h5>Doanh Thu Trong Tháng</h5>
 						<?php
-						$total = 10000000;
-						 $count = 0;
+							$total = 10000000;
+						 	$count = 0;
 							$count1 = 0;
 							$count2 = 0;
+							$count3 = 0;
+							$count4 = 0;
 						  ?>
 						
 						@foreach($date_phieunhap1 as $phieunhap1)
@@ -172,8 +187,23 @@
 								<?php $count2 += $pnct1->dongia*$pnct1->soluong ?>
 							@endforeach
 						@endforeach
+
 						@foreach($date_phieuxuatkho1 as $phieuxuatkho1)
-						<?php $count += $phieuxuatkho1->tonggia; ?>
+							<?php $count += $phieuxuatkho1->tonggia; ?>
+						@endforeach
+
+						@foreach($sanpham as $sanpham1)
+							@if(isset($sanpham1->tonkho))
+								<?php $count3 += $sanpham1->giacu * $sanpham1->tonkho->soluong; ?>
+							@else
+							@endif
+						@endforeach
+						
+						@foreach($date_sanpham1 as $sanpham2)
+							@if(isset($sanpham2->tonkho))
+								<?php $count4 += $sanpham2->giacu * $sanpham2->tonkho->soluong; ?>
+							@else
+							@endif
 						@endforeach
 						<?php 
 						if($total >= 1000000){
@@ -189,7 +219,7 @@
 								$newVal = $total;
 							}
 							?>
-						<div class="easypiechart" id="easypiechart-red" data-percent="{!! intval(str_replace(',', '', (($count - $count2)*100)/$total ))!!}" ><span class="percent">{!! intval(str_replace(',', '', (($count - $count2)*100)/$total ))!!}%/{!! $newVal !!}</span></div>
+						<div class="easypiechart" id="easypiechart-red" data-percent="{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}" ><span class="percent">{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}%/{!! $newVal !!}</span></div>
 					</div>
 				</div>
 			</div>

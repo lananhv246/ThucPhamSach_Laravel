@@ -43,7 +43,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function showLoginForm() {
-        return view('auth.login');
+        return view('auth.register');
     }
     public function login(Request $request) {
         $rules = [
@@ -62,16 +62,21 @@ class LoginController extends Controller
         } else {
             $email = $request->input('email');
             $password = $request->input('password');
+            if(Auth::check() || Auth::guard('admin')->check()){
+                    echo 'erro';
+            }else{
 
-            if( Auth::attempt(['email' => $email, 'password' =>$password], $request->has('remember'))) {
-                return redirect()->back();
-            }
-            else if(Auth::guard('admin')->attempt(['email' => $email, 'password' =>$password], $request->has('remember'))){
-                return redirect()->route('admin.home');
-            }
-             else {
-                $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
-                return redirect()->back()->withInput()->withErrors($errors);
+                if( Auth::attempt(['email' => $email, 'password' =>$password], $request->has('remember'))) {
+                    
+                    return redirect()->back();
+                }
+                else if(Auth::guard('admin')->attempt(['email' => $email, 'password' =>$password], $request->has('remember'))){
+                    return redirect()->route('admin.home');
+                }
+                else {
+                    $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
+                    return redirect()->back()->withInput()->withErrors($errors);
+                }
             }
         }
     }

@@ -75,128 +75,7 @@
         <?php } ;?>
     })
 </script>
-
-<div id="index-main">
-    <!--<div id="intro">
-        <div class="item">
-            <div class="container">
-                <div class="row">
-                    <div class="carousel-caption">
-                        <h1>Mario Shop<br>Cung cấp thực phẩm trực tuyến.</h1>
-                        <h3>Thực phẩm bẩn hiện nay đang trở thành nỗi lo thường trực của nhiều gia đình. Thông tin liên tiếp về thực phẩm nhiễm khuẩn, không đạt chất lượng vệ sinh an toàn thực phẩm đã gây tâm lý hoang mang tới người tiêu dùng.</h3>
-
-                        {{--  <p><a class="btn btn-lg btn-primary scroll-to" href="#content" role="button">View our top picks<br class="hidden-md hidden-lg"> for this week</a>
-                        </p>
-                        <p><a class="btn btn-lg btn-default" href="index-2.html" role="button">View alternative homepage</a>
-                        </p>  --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-    <!-- Overlay -->
-    <div class="overlay"></div>
-
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#bs-carousel" data-slide-to="1"></li>
-        <li data-target="#bs-carousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item slides active">
-            <div class="slide-1"></div>
-            <div class="hero">
-                <hgroup>
-                    <h1>MARIO VU NGUYEN</h1>
-                    <h3>cửa hàng thực phẩm sạch</h3>
-                </hgroup>
-            </div>
-        </div>
-        <div class="item slides">
-            <div class="slide-2"></div>
-            <div class="hero">
-                <hgroup>
-                    <h1>MARIO VU NGUYEN</h1>
-                    <h3>chuyên cung cấp các loại thực phẩm từ khấp nơi</h3>
-                </hgroup>
-            </div>
-        </div>
-        <div class="item slides">
-            <div class="slide-3"></div>
-            <div class="hero">
-                <hgroup>
-                    <h1>MARIO VU NGUYEN</h1>
-                    <h3>chất lượng hàng đầu đáng tin cậy</h3>
-                </hgroup>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- *** INTRO IMAGE END *** -->
-
     <div id="all">
-        <!-- *** ADVANTAGES ***__________________ -->
-
-        <div id="advantages">
-
-            <div class="container">
-
-                <div class="col-md-12">
-
-                    <div class="box text-center">
-                        <div class="same-height-row row">
-                            <div class="col-sm-3">
-                                <div class="box same-height clickable no-border text-center-xs text-center-sm">
-                                    <div class="icon"><i class="fa fa-heart-o"></i>
-                                    </div>
-                                    <h4><a href="#">KHÁCH HÀNG HÀI LÒNGs</a></h4>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="box same-height clickable no-border text-center-xs text-center-sm">
-                                    <div class="icon"><i class="fa fa-tags"></i>
-                                    </div>
-                                    <h4><a href="#">Giá cả hợp lý</a></h4>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="box same-height clickable no-border text-center-xs text-center-sm">
-                                    <div class="icon"><i class="fa fa-send-o"></i>
-                                    </div>
-                                    <h4><a href="#">Giao hàng nhanh chóng</a></h4>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="box same-height clickable no-border text-center-xs text-center-sm">
-                                    <div class="icon"><i class="fa fa-refresh"></i>
-                                    </div>
-                                    <h4><a href="#">Phương thức đổi trả mới</a></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.row -->
-
-                    </div>
-
-                </div>
-
-
-            </div>
-            <!-- /.container -->
-
-        </div>
-        <!-- /#advantages -->
-
-        <!-- *** ADVANTAGES END *** -->
-        <!-- *** CONTENT ***_______________________________-->
         <div id="content">
             <div class="container">
                 <div class="col-sm-12">
@@ -207,7 +86,7 @@
                     </div>
                     <div class="row products">
                     <?php $count = 1; ?>
-                        @foreach($sanphamnew as $data)
+                        @foreach($search as $data)
                         <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="idsanpham" id="idsanpham<?php echo $count;?>" value="{!!$data->id !!}"/>
                         <input type="hidden" name="ten_sampham" id="tensanpham<?php echo $count;?>" value="{!!$data->ten_sanpham !!}"/>
@@ -393,79 +272,9 @@
                 <!-- /.col-sm-12 -->
 
             </div>
-            <!-- /.container --><!-- *** PROMO BAR ***
-_________________________________________________________ -->
-
-            <div class="bar background-image-fixed-2 no-mb color-white text-center">
-                <div class="dark-mask"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="icon icon-lg"><i class="fa fa-file-code-o"></i>
-                            </div>
-                            <h1>Bạn muốn biết nhiều hơn?</h1>
-                            <p class="lead">Chúng tôi có tất cả những sản phẩm thuộc thực phẩm sạch, bạn có thể xem qua.</p>
-                            <p class="loadMore">
-                                <a href="{{route('product_full')}}" class="btn btn-primary"><i class="fa fa-chevron-down"></i> Xem thêm</a>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- *** PROMO BAR END *** -->
-
-
-            <div class="container">
-                <div class="col-sm-12">
-                    <!-- *** BLOG HOMEPAGE ***___ -->
-                    <div class="box text-center" id="bai-dang">
-                        <h3 class="text-uppercase">Các Bài Đăng Về Sản Phẩm</h3>
-
-                        <p class="text-italic text-large">Có gì mới về <strong>Thực Phẩm Sạch? </strong><span class="accent">Kiểm tra bài đăng!</span>
-                        </p>
-                    </div>
-                    <div id="blog-homepage" class="row">
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Giới thiệu</a></h4>
-                                <p class="author-category">Bởi <a href="#">Admin</a> trong <a href="#">Mario Fresh Food Shop</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Về mặt sinh học, thịt sạch là thịt không có ký sinh trùng và vi trùng: hai loại ký sinh trùng nguy hiểm thường có trong thịt động vật là giun bao (Trichinella)
-                                 và sán dây (Taenia solium). Nếu chúng ta ăn thịt bị nhiễm giun bao do không nấu kỹ, trứng giun bao không chết  vào ruột  nở thành giun rồi qua vách ruột theo máu đi đến cơ, nằm lại ở cơ gây đau nhức cơ, có thể dẩn đến chết.
-                                  Trứng sán dây cũng nằm trong cơ thịt động vật (thịt gạo), 
-                                 khi chúng ta ăn phải thịt này, trứng vào ruột sẽ nở thành sán trưởng thành bám chắc vào thành ruột, tranh giành các chất dinh dưỡng và làm cho chúng ta gầy yếu, bệnh hoạn..</p>
-                            
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="post">
-                                <h4><a href="post.html">Các bài đăng về thực phẩm sạch</a></h4>
-                                <p class="author-category">Bởi <a href="#">Admin</a> trong <a href="#">Mario Fresh Food Shop</a>
-                                </p>
-                                <hr>
-                                <p class="intro">Khi nói đến việc mua thực phẩm hàng ngày ở Việt Nam, người tiêu dùng hầu như không có sự lựa chọn nào khác ngoài thực phẩm không rõ nguồn gốc xuất xứ
-                                 Ngày càng xuất hiện thêm nhiều mối lo ngại đến thực phẩm nghèo chất dinh dưỡng và lạm dụng chất bảo quản.Báo chí hàng ngày nhan nhản các tin tức về thực phẩm bẩn.
-                                 Do đó, vấn đề an toàn thực phẩm ngày càng được chú trọng.</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Đọc thêm</a>
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- /#blog-homepage -->
-                    <!-- *** BLOG HOMEPAGE END *** -->
-                </div>
-                <!-- /.col-sm-12 -->
-            </div>
             <!-- /.container -->
         </div>
         <!-- /#content -->
     </div>
     <!-- /#all -->
-
-</div>
 @endsection

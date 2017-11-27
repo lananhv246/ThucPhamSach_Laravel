@@ -18,25 +18,31 @@ class IndexController extends Controller
         $topsale = SanPham::where('giamgia','>',0)->take(10)->get();
         $danhmuc = DanhMucLoai::orderBy('id','ASC')->with('loaisanpham');
         $dm = DanhMucLoai::pluck('ten_danhmuc','id');
-        $data = SanPham::orderBy('id','DESC')->with('phieunhapchitiet')->paginate(12);
+        $sanphamnew = SanPham::orderBy('id','DESC')->paginate(12);
         $search = SanPham::all();
         $sanpham = DanhMucLoai::find(1);
         $sanpham2 = DanhMucLoai::find(2);
-        return view('layouts.main.index', compact('data','danhmuc','topnew','topsale','dm', 'sanpham', 'sanpham2','search'));
+        return view('layouts.fontend-layouts.index', compact('sanphamnew','danhmuc','topnew','topsale','dm', 'sanpham', 'sanpham2','search'));
+    }
+    public function product_full(){
+        $product_full = SanPham::all();
+        return view('layouts.fontend-layouts.product-full', compact('product_full'));
     }
     public function product_detail($id){
-        $data = SanPhamChiTiet::where('id_sanpham',$id)->first();
-        return view('layouts.main.sanpham.sanphamchitiet',compact('data'));
+        $danhmuc = DanhMucLoai::all();
+        $data = SanPham::find($id);
+        return view('layouts.fontend-layouts.detail',compact('data','danhmuc'));
       
     }
-    public function loc_sanpham($id){
+    public function danhmucsanpham($id){
         $data = DanhMucLoai::find($id);
-        return view('layouts.main.sanpham.loc_sanpham',compact('data'));
+        return view('layouts.fontend-layouts.category-full',compact('data'));
     }
-    public function loc_loaisp($id)
+    public function loaisanpham($id)
     {
-        $data = LoaiSanPham::find($id);
-        return view('layouts.main.sanpham.loc_loaisp',compact('data'));
+        $danhmuc = DanhMucLoai::all();
+        $loaisanpham = LoaiSanPham::find($id);
+        return view('layouts.fontend-layouts.category',compact('loaisanpham','danhmuc'));
     }
     public function choose_danhmuc(Request $request){
         if($request->ajax()){
@@ -47,7 +53,12 @@ class IndexController extends Controller
     public function search(Request $request)
     {
         $search = SanPham::search($request->search)->get();
-        return view('layouts.main.search.search', compact('search'));
+        return view('layouts.fontend-layouts.timsanpham', compact('search'));
+    }
+    public function postsearch(Request $request)
+    {
+        $search = SanPham::search($request->search)->get();
+        return view('layouts.fontend-layouts.timsanpham', compact('search'));
     }
 
 }

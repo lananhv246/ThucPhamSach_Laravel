@@ -21,12 +21,14 @@
 
     <!-- Theme stylesheet -->
     <link href="/fontend-style/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
     <!-- Custom stylesheet - for your changes -->
     <link href="/fontend-style/css/custom.css" rel="stylesheet">
 
     <!-- Responsivity for older IE -->
     <script src="/fontend-style/js/respond.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/fontend-style/img/favicon.png">
@@ -34,31 +36,32 @@
 </head>
 
 <body class="no-padding">
-    @yield('content')
     @include('layouts.fontend-layouts.navbar')
-    @include('layouts.fontend-layouts.index')
-    @include('layouts.fontend-layouts.blog')
-    @include('layouts.fontend-layouts.category-full')
-    @include('layouts.fontend-layouts.category')
-    @include('layouts.fontend-layouts.contact')
-    @include('layouts.fontend-layouts.customer-account')
-    @include('layouts.fontend-layouts.customer-orders')
-    @include('layouts.fontend-layouts.customer-order')
-    @include('layouts.fontend-layouts.post')
-    @include('layouts.fontend-layouts.register')
-    @include('layouts.fontend-layouts.shopping')
-    @include('layouts.fontend-layouts.checkout1')
-    {{--  @include('layouts.fontend-layouts.checkout2')
-    @include('layouts.fontend-layouts.checkout3')  --}}
-    @include('layouts.fontend-layouts.checkout4')
+    @yield('content')
+    {{--  @include('layouts.fontend-layouts.index')  --}}
+    {{--  @include('layouts.fontend-layouts.detail')  --}}
+    {{--  @include('layouts.fontend-layouts.blog')  --}}
+    {{--  @include('layouts.fontend-layouts.category-full')  --}}
+    {{--  @include('layouts.fontend-layouts.category')  --}}
+    {{--  @include('layouts.fontend-layouts.contact')  --}}
+    {{--  @include('layouts.fontend-layouts.customer-account')  --}}
+    {{--  @include('layouts.fontend-layouts.customer-orders')  --}}
+    {{--  @include('layouts.fontend-layouts.customer-order')  --}}
+    {{--  @include('layouts.fontend-layouts.post')  --}}
+    {{--  @include('layouts.fontend-layouts.register')  --}}
+    {{--  @include('layouts.fontend-layouts.shopping')  --}}
+    {{--  @include('layouts.fontend-layouts.checkout1')  --}}
+    {{--  @include('layouts.fontend-layouts.checkout2')  --}}
+    {{--  @include('layouts.fontend-layouts.checkout3')   --}}
+    {{--  @include('layouts.fontend-layouts.checkout4')  --}}
     @include('layouts.fontend-layouts.footer')
     <!-- #### JAVASCRIPT FILES ### -->
 
-    <script src="/fontend-style/js/jquery-1.11.0.min.js"></script>
+    {{--  <script src="/fontend-style/js/jquery-1.11.0.min.js"></script>  --}}
+    <script src="/fontend-style/js/load-data.js"></script>
     <script src="/fontend-style/js/bootstrap.min.js"></script>
     <script src="/fontend-style/js/jquery.cookie.js"></script>
     <script src="/fontend-style/js/front.js"></script>
-
     
 
     <!-- #### JAVASCRIPT FILES FOR DEMO PURPOSE ### -->

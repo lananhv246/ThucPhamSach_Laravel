@@ -1,5 +1,5 @@
 
-@extends('layouts.master')
+@extends('layouts.fontend-layouts.master')
 @section('content')
     <div class="container">
         <div class="row">

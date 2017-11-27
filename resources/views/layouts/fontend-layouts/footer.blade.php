@@ -1,6 +1,8 @@
  <!-- *** FOOTER ***
 _________________________________________________________ -->
-
+<?php 
+    $danhmuc = \App\DanhMucLoai::orderBy('id','DESC')->take(2)->get();
+?>
         <div id="footer">
             <div class="container">
                 <div class="col-md-3 col-sm-6">
@@ -24,7 +26,7 @@ _________________________________________________________ -->
                     <ul>
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Đăng nhập</a>
                         </li>
-                        <li><a href="register.html">Đăng ký</a>
+                        <li><a href="/register">Đăng ký</a>
                         </li>
                     </ul>
 
@@ -36,30 +38,16 @@ _________________________________________________________ -->
                 <div class="col-md-3 col-sm-6">
 
                     <h4>Danh mục hàng đầu</h4>
-
-                    <h5>Men</h5>
+                    @foreach($danhmuc as $danhmuctop)
+                    <h5>{{$danhmuctop->ten_danhmuc}}</h5>
 
                     <ul>
-                        <li><a href="category.html">T-shirts</a>
+                        @foreach($danhmuctop->loaisanpham as $loaitop)
+                        <li><a href="category.html">{{$loaitop->ten_loai}}</a>
                         </li>
-                        <li><a href="category.html">Shirts</a>
-                        </li>
-                        <li><a href="category.html">Accessories</a>
-                        </li>
+                        @endforeach
                     </ul>
-
-                    <h5>Ladies</h5>
-                    <ul>
-                        <li><a href="category.html">T-shirts</a>
-                        </li>
-                        <li><a href="category.html">Skirts</a>
-                        </li>
-                        <li><a href="category.html">Pants</a>
-                        </li>
-                        <li><a href="category.html">Accessories</a>
-                        </li>
-                    </ul>
-
+                    @endforeach
                     <hr class="hidden-md hidden-lg">
 
                 </div>
@@ -69,16 +57,12 @@ _________________________________________________________ -->
 
                     <h4>Địa chỉ cửa hàng</h4>
 
-                    <p><strong>Obaju Ltd.</strong>
-                        <br>13/25 New Avenue
-                        <br>New Heaven
-                        <br>45Y 73J
-                        <br>England
-                        <br>
-                        <strong>Great Britain</strong>
-                    </p>
+                    <ul>
+                        <li> <a href="#"> * Thới Lai, Cần Thơ, Việt Nam </a> </li>
+                        <li> <a href="#"> * Ba Tháng Hai, Xuân Khánh, Ninh Kiều, Cần Thơ, Vietnam </a> </li>
+                    </ul>
 
-                    <a href="contact.html">Liên hệ</a>
+                    <a href="/contact">Liên hệ</a>
 
                     <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -137,7 +121,7 @@ _________________________________________________________ -->
                 <div class="col-md-12">
                     <p class="pull-left">&copy; 2014. Minimal is responsive template by <a href="http://www.ondrejsvestka.cz/" class="external">Ondrej Svestka</a>.</p>
                     <p class="pull-right">
-                        <img src="fontend-style/img/payment.png" alt="payments accepted">
+                        <img src="/fontend-style/img/payment.png" alt="payments accepted">
                     </p>
 
                 </div>

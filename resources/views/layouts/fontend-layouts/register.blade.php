@@ -1,11 +1,12 @@
-
+@extends('layouts.fontend-layouts.master')
+@section('content')
 <div id="all">
     <div id="content">
         <div class="container">
             <div class="col-md-12">
                 <ul class="breadcrumb">
 
-                    <li><a href="index-2.html">Trang chủ</a>
+                    <li><a href="/">Trang chủ</a>
                     </li>
                     <li>Tạo mới tài khoản / Đăng nhập</li>
                 </ul>
@@ -76,3 +77,4 @@
     </div>
     <!-- /#content -->
 </div>
+@endsection

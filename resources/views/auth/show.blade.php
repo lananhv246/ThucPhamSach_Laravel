@@ -1,6 +1,9 @@
-@extends('layouts.master')
+
+@extends('layouts.fontend-layouts.master')
 @section('content')
-        @include('flashmessage.flashmessage')
+@include('flashmessage.flashmessage')
+<div id="all">
+    <div id="content">
         <div class="container">
             <div class="col-md-12">
                 <div class="col-md-4">
@@ -77,4 +80,6 @@
                         type="text/javascript"></script>
             </div>
         </div>
+    </div>
+</div>
 @endsection

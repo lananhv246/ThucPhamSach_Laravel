@@ -43,7 +43,7 @@ class CartController extends Controller
 
         if($request->ajax()){
             Cart::update($rowid, $qty );
-            return view('layouts.main.Cart.updatecart',compact('cart'));
+            return view('layouts.fontend-layouts.update-cart',compact('cart'));
         }
         // if ($item->qty > 8){
         //     if(Auth::check()){
@@ -106,6 +106,6 @@ class CartController extends Controller
     }
     public function shopping() {
         $cart = Cart::content();
-        return view('layouts.main.Cart.shoppingcart',compact('cart'));
+        return view('layouts.fontend-layouts.shopping',compact('cart'));
     }
 }
