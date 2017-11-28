@@ -1,9 +1,25 @@
 @extends('layouts.fontend-layouts.master')
 @section('content')
+<link href="{{ asset('css/header.css') }}" rel="stylesheet">
 <script>
     $(document).ready(function(){
          <?php for ($i=1;$i<1000;$i++) {?>
+         $('#add-cart<?php echo $i;?>').on('click', function(){
+            var idpro = $('#idsanpham<?php echo $i;?>').val();
+            var namepro = $('#tensanpham<?php echo $i;?>').val();
+            //alert(idpro);
+            $.ajax({
+                url: '<?php echo url('add/cart')?>/'+idpro,
+                type: 'GET',
+                dataType: 'html',
+                data: "idpro="+idpro+"& namepro="+namepro,
+                success: function(data){
+                    alert('sản phẩm '+namepro+' đả được thêm vào giỏ hàng');
+                }
+            });
+         });
         $('.modal<?php echo $i;?>').on('click', function(){
+            
             var idsanpham = $('#idsanpham<?php echo $i;?>').val();
             var routeid = '<?php echo url('chitiet')?>/'+idsanpham;
             var addcart = '<?php echo url('cart')?>/'+idsanpham;
@@ -62,13 +78,27 @@
                     );
                 }
             }
-            $('#idsp').html('<input type="hidden" id="idspham" name="id" value="'+idsanpham+'"/>');
+            $('#idsp').html('<input type="hidden" id="idsanpham" name="id" value="'+idsanpham+'"/>');
             
             $('#image').html('<img src="/images/upload/'+image+'" class="img-responsive">');
             $('#chitietsanpham').html(chitietsanpham+
                 '<a href="'+routeid+'">Đọc tiếp</a>'
             );
-            $('#addcart').html('<a href="'+addcart+'" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>')
+            $('#addcart').html('<a href="#" id="add-cart<?php echo $i;?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>')
+            $('#add-cart<?php echo $i;?>').on('click', function(){
+                var idpro = $('#idsanpham<?php echo $i;?>').val();
+                var namepro = $('#tensanpham<?php echo $i;?>').val();
+                //alert(idpro);
+                $.ajax({
+                    url: '<?php echo url('add/cart')?>/'+idpro,
+                    type: 'GET',
+                    dataType: 'html',
+                    data: "idpro="+idpro,
+                    success: function(data){
+                        alert('sản phẩm đả được thêm vào giỏ hàng');
+                    }
+                });
+            });
             //link
             
         });
@@ -237,7 +267,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a href="{{route('cart',[$data->id])}}"  class="btn-none btn btn-default">
+                                                        {{--  <a href="{{route('cart',[$data->id])}}"  class="btn-none btn btn-default">  --}}
+                                                            <a href="#" id="add-cart<?php echo $count;?>" class="btn-none btn btn-default">
                                                             <span class="sr-only">add cart</span>
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </a>
@@ -329,11 +360,13 @@
                                                     <div class="quick-view-main-image" id="image">
                                                     </div>
                                                     <div id="addoption"></div>
+                                                     <div class="box">
+                                                        <p id="chitietsanpham" class="text-muted text-small text-center"></p>
+                                                    </div>
                                                 </div>
                                                 <div class="col-sm-6">
 
                                                     <h2 id="tensanpham" ></h2>
-                                                    <p id="chitietsanpham" class="text-muted text-small text-center"></p>
 
                                                     <div class="box">
 

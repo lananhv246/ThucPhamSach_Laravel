@@ -19,9 +19,9 @@
             {!! Form::label('tongso_sanpham', 'Tổng số lượng:') !!}
             {!! Form::text('tongso_sanpham', null, array('class'=>'form-control')) !!}
 
-            <a href="{{route('hoadon.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+            <a href="{{route('hoadon.index') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
 
-            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
         </div>
 @endsection

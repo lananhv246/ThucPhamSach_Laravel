@@ -52,8 +52,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('sanphamchitiet.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
-                            <a href="{{route('sanphamchitiet.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Chỉnh Sửa</a>
+                            <a href="{{route('sanphamchitiet.index') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                            <a href="{{route('sanphamchitiet.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Chỉnh Sửa</a>
                         </td>
                     </tr>
                     </tbody>

@@ -6,7 +6,7 @@
                 var $n = $('#addrow').children().length + 1;
                 $("#addrow").append(
                     '<tr class="row' + $n + '">' +
-                        '<td>{!! Form::select("id_sanphammoi[]",$sanpham, null,["id" => "id_sanpham", "class" => "form-control", "placeholder" => "Chọn Sản Phẩm"]) !!}</td>' +
+                        '<td>{!! Form::select("id_sanphammoi[]",$sanpham, null,["id" => "id_sanpham", "class" => "sanpham form-control", "placeholder" => "Chọn Sản Phẩm"]) !!}</td>' +
                         '<td>{!! Form::text("soluongmoi[]", null, array("class"=>"form-control")) !!}</td>' +
                         '<td>{!! Form::text("dongiamoi[]", null, array("class"=>"form-control")) !!}</td>' +
                         '<td>{!! Form::select("donvitinhmoi[]", ["kg" => "Kilogam", "Bó" => "Bó"], null, ["class" => "form-control"]) !!}</td>' +
@@ -18,6 +18,15 @@
                     e.preventDefault();
                     $('.row' + $n).remove();
                 });
+                $('select.sanpham').on('change', function() {
+                    $('option').prop('hidden', false); //reset all the disabled options on every change event
+                    $('select.sanpham').each(function() { //loop through all the select elements
+                        var val = this.value;
+                        $('select.sanpham').not(this).find('option').filter(function() { //filter option elements having value as selected option
+                        return this.value === val;
+                        }).prop('hidden', true); //disable those option elements
+                    });
+                }).change(); //trihgger change handler initially!
             }
 
             $('#add_order_pro').click(function () {
@@ -46,7 +55,9 @@
                         {!! Form::text('ten_phieunhap', null, array('class'=>'form-control')) !!}
                         </div>  --}}
                     </div>
-                        {!! Form::submit('Sửa', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                    <div class="col-md-12">
+                        {!! Form::submit('Sửa', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
+                    </div>
                 </div>
                 <div class="panel-body">
                     <h3>Phiếu Nhập Chi Tiết</h3>
@@ -58,18 +69,18 @@
                             <th>Số Lượng</th>
                             <th>Đơn Giá</th>
                             <th>Đơn vị tính</th>
-                            <th><div id="add_order_pro"><a class="btn btn-sm red btn-danger" ><span class="fa fa-plus-circle fa-2x"></span>Thêm</a></div></th>
+                            <th><div id="add_order_pro"><a class="btn btn-primary" ><span class="fa fa-plus-circle"></span>Thêm</a></div></th>
                         </tr>
                         </thead>
                         <tbody id="addrow">
                         @if($data->phieunhapchitiet->count() > 0)
                             @foreach($data->phieunhapchitiet as $pnct)
                                 <tr>
-                                    <td>{!! Form::select("id_sanpham[]",$sanpham, $pnct->id_sanpham,["id" => "id_sanpham", "class" => "form-control", "placeholder" => "Chọn Sản Phẩm"]) !!}</td>
+                                    <td>{!! Form::select("id_sanpham[]",$sanpham, $pnct->id_sanpham,["id" => "id_sanpham", "class" => "sanpham form-control", "placeholder" => "Chọn Sản Phẩm"]) !!}</td>
                                     <td>{!! Form::text("soluong[]", $pnct->soluong, array("class"=>"form-control")) !!}</td>
                                     <td>{!! Form::text("dongia[]", $pnct->dongia, array("class"=>"form-control")) !!}</td>
                                     <td>{!! Form::select("donvitinh[]", ["kg" => "Kilogam", "Bó" => "Bó"], $pnct->donvitinh, ["class" => "form-control", "placeholder" => "Chọn đơn vị tính..."]) !!}</td>
-                                    <td><a href="{{route('phieunhapchitiet.show',[$pnct->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle fa-2x"></span>Xem</a></td>
+                                    <td><a href="{{route('phieunhapchitiet.show',[$pnct->id]) }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Xem</a></td>
                                     {{--  <td>{!! Form::open(['route'=>['phieunhapchitiet.destroy', $pnct->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
                                     {!! Form::submit('Xóa', ['class'=>'btn btn-success btn-sm btn-danger']) !!}
                                     {!! Form::close() !!}</td>  --}}

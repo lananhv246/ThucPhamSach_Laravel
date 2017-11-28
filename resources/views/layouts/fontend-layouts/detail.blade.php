@@ -1,7 +1,24 @@
 @extends('layouts.fontend-layouts.master')
 @section('content')
+<script>
+    $(document).ready(function(){
+         $('#add-cart').on('click', function(){
+            var idpro = $('#idsanpham').val();
+            var namepro = $('#tensanpham').val();
+            //alert(idpro);
+            $.ajax({
+                url: '<?php echo url('add/cart')?>/'+idpro,
+                type: 'GET',
+                dataType: 'html',
+                data: "idpro="+idpro+"& namepro="+namepro,
+                success: function(data){
+                    alert('sản phẩm '+namepro+' đả được thêm vào giỏ hàng');
+                }
+            });
+         });
+    })
+</script>
 <div id="all">
-
     <div id="content">
         <div class="container">
 
@@ -74,6 +91,10 @@
                         <div class="box">
 
                             <form>
+                                <input class="tokens" type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="idsanpham" id="idsanpham" value="{!!$data->id !!}"/>
+                                <input type="hidden" name="ten_sampham" id="tensanpham" value="{!!$data->ten_sanpham !!}"/>
+                        
                             @if($data->giamgia != 0)
                                     <p class="price"><del>{!! number_format($data->giacu,0,",","." ) !!} 
                                     </del> {!! number_format($data->dongia,0,",","." ) !!} 
@@ -83,7 +104,7 @@
                                 ₫/{!! $data->donvitinh !!}</p>
                             @endif
                                 <p class="text-center">
-                                    <a href="{{route('cart',[$data->id])}}" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                    <a href="#" id="add-cart" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                     <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Yêu thích"><i class="fa fa-heart-o"></i>
                                     </button>
                                 </p>
@@ -169,9 +190,18 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
                                 <li class="active">
+                               <?php $countsp = 0 ?>
                                 @foreach($danhmuc as $listdanhmuc)
                                     @if(count($listdanhmuc->loaisanpham) != 0)
-                                    <a href="{{route('danhmuc',[$listdanhmuc->id])}}">{{$listdanhmuc->ten_danhmuc}}<span class="badge pull-right">{{count($listdanhmuc->loaisanpham)}}</span></a>
+                                        @foreach($listdanhmuc->loaisanpham as $listloai)
+                                            @if(count($listloai->sanpham) != 0)
+                                                @foreach($listloai->sanpham as $sp)
+                                                    <?php $countsp += count($sp); ?>
+                                                @endforeach
+                                            @else
+                                            @endif
+                                        @endforeach
+                                    <a href="{{route('danhmuc',[$listdanhmuc->id])}}">{{$listdanhmuc->ten_danhmuc}}<span class="badge pull-right">{{$countsp}}</span></a>
                                     <ul>
                                         @foreach($listdanhmuc->loaisanpham as $listloai)
                                         <li><a href="{{route('loaisanpham',[$listloai->id])}}">{{$listloai->ten_loai}}</a>

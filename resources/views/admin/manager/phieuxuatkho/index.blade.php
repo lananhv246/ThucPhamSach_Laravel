@@ -64,22 +64,22 @@
                         
                         </td>
                         <td>
-                            <a href="{{route('phieuxuatkho.show',[$phieuxuatkho->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
+                            <a href="{{route('phieuxuatkho.show',[$phieuxuatkho->id]) }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                         @if($phieuxuatkho->id_admin != null)
                             Đả Giao hàng
                         @else
                             {!! Form::open(['route'=>['phieuxuatkho.destroy', $phieuxuatkho->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xóa', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa', ['class'=>'btn btn-primary']) !!}
                             {!! Form::close() !!}
                         @endif
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
-                    <a href="{{route('phieuxuatkho.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                    <a href="{{url('/admin') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('phieuxuatkho.create') }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

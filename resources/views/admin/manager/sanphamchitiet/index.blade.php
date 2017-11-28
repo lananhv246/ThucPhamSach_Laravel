@@ -26,18 +26,18 @@
                         <td>{!! $spct->chebien !!}</td>
                         <td>{!! $spct->thanhphan !!}</td>
                         <td>
-                            <a href="{{route('sanphamchitiet.show',[$spct->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
+                            <a href="{{route('sanphamchitiet.show',[$spct->id]) }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['route'=>['sanphamchitiet.destroy', $spct->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xoa', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xoa', ['class'=>'btn btn-primary']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
-                    <a href="{{route('sanphamchitiet.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                    <a href="{{url('/admin') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('sanphamchitiet.create') }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

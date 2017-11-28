@@ -18,7 +18,6 @@
 
     <!-- Theme stylesheet -->
     <link href="/fontend-style/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
     <!-- Custom stylesheet - for your changes -->
     <link href="/fontend-style/css/custom.css" rel="stylesheet">
@@ -34,7 +33,6 @@
 
 <body class="no-padding">
     @include('layouts.fontend-layouts.navbar')
-    @include('layouts.fontend-layouts.customer-orders')
     @yield('content')
     @include('layouts.fontend-layouts.footer')
     <!-- #### JAVASCRIPT FILES ### -->

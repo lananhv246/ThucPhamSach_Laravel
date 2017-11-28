@@ -21,7 +21,7 @@
             {!! Form::label('tonggia', 'Tổng giá:') !!}
             {!! Form::text('tonggia', null, array('disabled'=>'disabled','class'=>'form-control')) !!}
             </div>
-            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
             @if(count($data->phieuxuatkhochitiet) >0)
             <h3>Phiếu Xuất Kho Chi Tiết</h3>
             <table class="table table-hover">

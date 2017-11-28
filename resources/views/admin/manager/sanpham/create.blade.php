@@ -24,9 +24,9 @@
                 {!! Form::label('image', 'Hình ảnh:') !!}
                 {!! Form::file('image', array('class'=>'form-control')) !!}
 
-            <a href="{{route('sanpham.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
+            <a href="{{route('sanpham.index') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Back</a>
 
-            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
         </div>
 @endsection

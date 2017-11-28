@@ -147,15 +147,15 @@
                                 <tbody>
                                     <tr>
                                         <td>Tổng giá đơn hàng</td>
-                                        <th>{{Cart::subtotal()}}</th>
+                                        <th>{{Cart::subtotal()}}₫</th>
                                     </tr>
                                     <tr>
                                         <td>Thuế</td>
-                                        <th>{{Cart::tax()}}</th>
+                                        <th>{{Cart::tax()}}₫</th>
                                     </tr>
                                     <tr class="total">
                                         <td>Tổng tiền</td>
-                                        <th>{{Cart::total()}}</th>
+                                        <th>{{Cart::total()}}₫</th>
                                     </tr>
                                 </tbody>
                             </table>

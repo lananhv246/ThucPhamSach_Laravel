@@ -93,13 +93,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('phieuxuatkho.index') }}" class="btn btn-sm red btn-danger">
+                            <a href="{{route('phieuxuatkho.index') }}" class="btn btn-primary">
                                 <span class="fa fa-arrow-circle-left"></span>Trở Về</a>
                             @if(count($data->id_admin) != null)
-                            <a href="#" disabled class="btn btn-sm green btn-danger">
+                            <a href="#" disabled class="btn btn-primary">
                                 <span class="fa fa-pencil"></span>Đả duyệt hàng</a>
                             @else
-                            <a href="{{route('phieuxuatkho.edit',[$data->id]) }}" class="btn btn-sm green btn-danger">
+                            <a href="{{route('phieuxuatkho.edit',[$data->id]) }}" class="btn btn-primary">
                                 <span class="fa fa-pencil"></span>Duyệt Phiếu xuất kho</a>
                             @endif
                             <?php $cono = 0;
@@ -123,7 +123,7 @@
                                     {{--  {!! Form::open(['route'=>['phieuxuatkho.createnewoldorder', $data->id], 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
                                     {!! Form::submit('giao đơn hàng nợ', ['class'=>'btn btn-success btn-sm']) !!}
                                     {!! Form::close() !!}  --}}
-                                    <a href="{{route('phieuxuatkho.createnewoldorder',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Giao Đơn Hàng Nợ</a>
+                                    <a href="{{route('phieuxuatkho.createnewoldorder',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Giao Đơn Hàng Nợ</a>
                             
                                 @else
                                 <div>Số lượng không đủ giao</div>

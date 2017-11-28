@@ -34,7 +34,7 @@
                         {{--<td>{!! $data['tongso_sanpham'] !!}</td>--}}
                         {{--<td>{!! $data['donvitien'] !!}</td>--}}
                         <td>
-                            <a href="{{route('hoadon.show',[$hoadon->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
+                            <a href="{{route('hoadon.show',[$hoadon->id]) }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Xem</a>
                         </td>
                         {{--  <td>
                             {!! Form::open(['route'=>['hoadon.destroy', $hoadon->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
@@ -44,8 +44,8 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
-                    <a href="{{route('hoadon.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                    <a href="{{url('/admin') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('hoadon.create') }}" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

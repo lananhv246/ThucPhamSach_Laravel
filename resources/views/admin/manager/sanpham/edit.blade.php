@@ -26,7 +26,7 @@
             {!! Form::hidden('oldImage', $data->image) !!}
             <img src="/images/upload/{!! old('image', isset($data) ? $data['image'] : null) !!}" class="img-responsive">
 
-            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
             
         {!! Form::close() !!}
     </div>

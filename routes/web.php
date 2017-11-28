@@ -84,9 +84,11 @@ Route::get('/carousel', function () {
 
 });
 //sopping cart
+Route::get('/add/cart/{id}',['as'=>'addcart','uses'=>'CartController@addcart']);
 Route::get('/cart/{id}',['as'=>'cart','uses'=>'CartController@cart'])->where('id','[0-9]+');
 Route::get('/cart/plus/{id}',['as'=>'updateshoppingcartplus','uses'=>'CartController@updateQtyPlus']);
-Route::delete('/shopping/delete-cart/{id}',['as'=>'deleteshoppingcart.delete-cart','uses'=>'CartController@delete_cart']);
+Route::get('/shopping/delete-cart/{id}',['as'=>'deleteshoppingcart.delete-cart','uses'=>'CartController@delete_cart']);
+Route::delete('/shopping/deletecart/{id}',['as'=>'deletecart','uses'=>'CartController@deletecart']);
 Route::get('/shopping',['as'=>'shopping','uses'=>'CartController@shopping']);
 
 //allsanpham

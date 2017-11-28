@@ -59,10 +59,10 @@
                                                 <td><a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->name}}</p></span></a>
                                                 </td>
                                                 <td>{{$item->qty}}</td>
-                                                <td>{{number_format($item->price,0,",","." )}} ₫</td>
-                                                <td>{{number_format($item->subtotal,0,",","." )}} ₫</td>
-                                                <td>{{number_format($item->tax,0,",","." )}} ₫</td>
-                                                <td>{{number_format($item->total,0,",","." )}} ₫</td>
+                                                <td>{{number_format($item->price,0,",","." )}}₫</td>
+                                                <td>{{number_format($item->subtotal,0,",","." )}}₫</td>
+                                                <td>{{number_format($item->tax,0,",","." )}}₫</td>
+                                                <td>{{number_format($item->total,0,",","." )}}₫</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

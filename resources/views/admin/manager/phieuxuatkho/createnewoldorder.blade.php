@@ -12,7 +12,7 @@
                         {!! Form::label('id_admin', Auth::guard('admin')->user()->name, array('disabled'=>'disabled','class'=>'form-control') ) !!}
                         </div>
                         <div class="col-md-12">
-                        {!! Form::submit('Thêm', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+                        {!! Form::submit('Thêm', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
                         </div>
                     </div>
                 </div>

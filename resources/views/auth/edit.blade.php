@@ -27,6 +27,9 @@
 
                 {!! Form::label('password_confirmation', 'Xác Nhận:') !!}
                 {!! Form::password('password_confirmation', array('class'=>'form-control')) !!}
+                
+                {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
+                {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
 
                 {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
                 </div>
@@ -41,9 +44,6 @@
                     {!! Form::text('diachi', $data->diachikh->diachi, array('class'=>'form-control', 'id'=>'searchmap')) !!}
 
                     <div id="map-canvas"></div>
-
-                    {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
-                    {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
 
                     {!! Form::hidden('lat', $data->diachikh->lat, array('class'=>'form-control', 'id'=>'lat')) !!}
 

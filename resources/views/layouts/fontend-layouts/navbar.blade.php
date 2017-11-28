@@ -20,7 +20,7 @@ _________________________________________________________ -->
                     </button>
                     <!-- shopping -->
                     <a class="btn btn-primary navbar-toggle" href="{{route('shopping')}}">
-                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">{{count(Cart::content())}}Giỏ hàng</span>
+                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs" id="update-count">{{count(Cart::content())}}Giỏ</span>
                     </a>
                     <button type="button" class="navbar-toggle btn-default" data-toggle="collapse" data-target="#search">
                         <span class="sr-only">Toggle search</span>
@@ -41,7 +41,7 @@ _________________________________________________________ -->
                     <li class="active"><a href="/" >Trang Chủ</a>
                     </li>
                     <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản Phẩm<b class="caret"></b></a>
+                        <a href="#1" class="dropdown-toggle" data-toggle="dropdown">Sản Phẩm<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <div class="yamm-content">
@@ -86,7 +86,7 @@ _________________________________________________________ -->
             <!--/.nav-collapse -->
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="{{route('shopping')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">({{count(Cart::content())}}) <span class="hidden-md">Giỏ</span></span></a>
+                <a href="{{route('shopping')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="update-count"><span class="hidden-md">Giỏ</span></span></a>
             </div>
             <!--/.nav-collapse -->
 

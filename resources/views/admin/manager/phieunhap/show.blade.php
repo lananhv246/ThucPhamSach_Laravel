@@ -65,8 +65,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('phieunhap.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Back</a>
-                            <a href="{{route('phieunhap.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Edit</a>
+                            <a href="{{route('phieunhap.index') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                            <a href="{{route('phieunhap.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Edit</a>
                         </td>
                     </tr>
                     </tbody>

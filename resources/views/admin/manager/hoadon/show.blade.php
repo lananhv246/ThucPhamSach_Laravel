@@ -82,7 +82,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="{{route('hoadon.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                            <a href="{{route('hoadon.index') }}" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
                             {{--  <a href="{{route('hoadon.edit',[$data->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-pencil"></span>Sửa</a>  --}}
                         </td>
                     </tr>

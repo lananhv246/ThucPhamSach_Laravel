@@ -22,7 +22,7 @@
             <a href="{{route('phieuxuatkho.index') }}" class="btn btn-sm red btn-danger">
                 <span class="fa fa-arrow-circle-left"></span>Trở về</a>
 
-            {!! Form::submit('Lưu', array('class'=>'btn btn-success btn-sm', 'style' => 'margin:20px 0px')) !!}
+            {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
             {!! Form::close() !!}
         </div>
 @endsection

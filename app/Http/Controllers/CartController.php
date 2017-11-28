@@ -21,6 +21,14 @@ class CartController extends Controller
         Session::flash('success','Sản Phẩm Đả Thêm Vào Giỏ Hàng');
         return redirect('/');
     }
+    public function addcart(Request $request, $id){
+        $idpro = $request->idpro;
+        $product = SanPham::find($idpro);
+        if($request->ajax()){
+            Cart::add(array('id' => $product->id, 'name' => $product->ten_sanpham, 'qty' => 1, 'price' => $product->dongia,'options' => array('img' => $product->image, 'donvitinh'=>$product->donvitinh)));
+            return back();
+        }
+    }
     public function updateQtyPlus(Request $request,$id)
     {
         //validate
@@ -99,10 +107,23 @@ class CartController extends Controller
     //     }
     //     return redirect()->route('shopping');
     // }
-    public function delete_cart($id) {
+    public function deletecart($id) {
         Cart::remove($id);
         Session::flash('success','Thành Công');
         return redirect()->back();
+    }
+    public function delete_cart(Request $request, $id) {
+        $rowid = $request->rowid;
+        $cart = Cart::content();
+        if($request->ajax()){
+            Cart::remove($rowid);
+            if(isset($cart)){
+                return view('layouts.fontend-layouts.update-cart',compact('cart'));
+            }
+            else{
+                return redirect('/');
+            }
+        }
     }
     public function shopping() {
         $cart = Cart::content();

@@ -3,6 +3,22 @@
 <script type="text/javascript">
     $(document).ready(function(){
         <?php for ($i=1;$i<1000;$i++) {?>
+         $('#delete-cart<?php echo $i;?>').on('click', function(){
+            var rowid = $('#rowId<?php echo $i;?>').val();
+            var proid = $('#proId<?php echo $i;?>').val();
+            var qty = $('#CartUp<?php echo $i;?>').val();
+            //alert(idpro);
+            $.ajax({
+                url: '<?php echo url('shopping/delete-cart')?>/'+rowid,
+                type: 'GET',
+                dataType: 'html',
+                data: "rowid="+rowid,
+                success: function(data){
+                    alert('đả xóa sản phẩm');
+                    $('#UpdateCart').html(data);
+                }
+            });
+         });
         $('#CartUp<?php echo $i;?>').on('change keyup',function () {
             var rowid = $('#rowId<?php echo $i;?>').val();
             var proid = $('#proId<?php echo $i;?>').val();
@@ -63,7 +79,7 @@
                 <div class="col-md-9 clearfix" id="basket">
 
                     <div class="box">
-                                @if(count($cart))
+                                @if(count($cart)!= 0)
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
@@ -105,12 +121,19 @@
                                                             <p class="cart_total_price">{{$item->subtotal}}₫</p>
                                                         </td>
                                                         <td class="cart_delete">
-                                                            {!! Form::open(['route'=>['deleteshoppingcart.delete-cart',$item->rowId], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}                                    
-                                                            <button class="btn green right" type="submit">
-                                                            <span class="fa fa-cart-plus"></span>
+                                                            @if(count($cart) > 1)
+                                                            <a href="#" id="delete-cart<?php echo $count;?>" class="btn-none btn btn-default">
+                                                            <span class="fa fa-trash"></span>
+                                                            Xóa
+                                                            </a>
+                                                            @else
+                                                            {!! Form::open(['route'=>['deletecart',$item->rowId], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}                                    
+                                                            <button class="btn-none btn btn-default" type="submit">
+                                                            <span class="fa fa-trash"></span>
                                                             Xóa
                                                             </button>
                                                             {!! Form::close() !!}
+                                                            @endif
                                                         </td>
                                                 </tr>
                                                 <tr>
