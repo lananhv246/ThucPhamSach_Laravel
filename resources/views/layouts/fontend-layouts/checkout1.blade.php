@@ -16,7 +16,7 @@
 
                 <div class="col-md-12 clearfix">
                     <ul class="breadcrumb">
-                        <li><a href="index-2.html">Trang chủ</a>
+                        <li><a href="/">Trang chủ</a>
                         </li>
                         <li>Kiểm tra - địa chỉ</li>
                     </ul>

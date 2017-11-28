@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
 
-                        <li><a href="index-2.html">Trang chủ</a>
+                        <li><a href="/">Trang chủ</a>
                         </li>
                         <li>Giỏ hàng</li>
                     </ul>
@@ -102,7 +102,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="cart_total">
-                                                            <p class="cart_total_price">{{$item->subtotal}} ₫</p>
+                                                            <p class="cart_total_price">{{$item->subtotal}}₫</p>
                                                         </td>
                                                         <td class="cart_delete">
                                                             {!! Form::open(['route'=>['deleteshoppingcart.delete-cart',$item->rowId], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}                                    
@@ -130,7 +130,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th colspan="5">Tổng</th>
-                                                    <th colspan="2">{{Cart::total()}}</th>
+                                                    <th colspan="2">{{Cart::total()}}₫</th>
                                                 </tr>
                                             </tfoot>
                                         </table>

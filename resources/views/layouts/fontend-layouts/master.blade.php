@@ -34,6 +34,7 @@
 
 <body class="no-padding">
     @include('layouts.fontend-layouts.navbar')
+    @include('layouts.fontend-layouts.customer-orders')
     @yield('content')
     @include('layouts.fontend-layouts.footer')
     <!-- #### JAVASCRIPT FILES ### -->

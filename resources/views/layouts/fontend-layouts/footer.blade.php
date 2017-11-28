@@ -9,13 +9,13 @@ _________________________________________________________ -->
                     <h4>Trang</h4>
 
                     <ul>
-                        <li><a href="text.html">Thông tin cửa hàng</a>
+                        <li><a href="#">Thông tin cửa hàng</a>
                         </li>
-                        <li><a href="text-left.html">Điều khoản, điều kiện.</a>
+                        <li><a href="#">Điều khoản, điều kiện.</a>
                         </li>
-                        <li><a href="faq.html">FAQ</a>
+                        <li><a href="#">FAQ</a>
                         </li>
-                        <li><a href="contact.html">Liên hệ</a>
+                        <li><a href="#">Liên hệ</a>
                         </li>
                     </ul>
 

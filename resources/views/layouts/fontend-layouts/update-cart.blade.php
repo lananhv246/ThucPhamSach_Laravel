@@ -35,7 +35,7 @@
 <div class="col-md-12">
                     <ul class="breadcrumb">
 
-                        <li><a href="index-2.html">Trang chủ</a>
+                        <li><a href="/">Trang chủ</a>
                         </li>
                         <li>Giỏ hàng</li>
                     </ul>
@@ -81,10 +81,10 @@
                                                             <a href="{{route('product_detail',[$item->id])}}"><span><p>{{$item->name}}</p></span></a>
                                                         </td>
                                                         <td class="cart_price">
-                                                            <p>{{number_format($item->price,0,",","." )}} ₫</p>
+                                                            <p>{{number_format($item->price,0,",","." )}}₫</p>
                                                         </td>
                                                         <td class="cart_tax">
-                                                            <p>{{number_format($item->tax * $item->qty,0,",","." )}} ₫</p>
+                                                            <p>{{number_format($item->tax * $item->qty,0,",","." )}}₫</p>
                                                         </td>
                                                         <td class="cart_quantity">
                                                             <div class="cart_quantity_button">
@@ -95,7 +95,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="cart_total">
-                                                            <p class="cart_total_price">{{$item->subtotal}} ₫</p>
+                                                            <p class="cart_total_price">{{$item->subtotal}}₫</p>
                                                         </td>
                                                         <td class="cart_delete">
                                                             {!! Form::open(['route'=>['deleteshoppingcart.delete-cart',$item->rowId], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}                                    
@@ -123,7 +123,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th colspan="5">Tổng</th>
-                                                    <th colspan="2">{{Cart::total()}}</th>
+                                                    <th colspan="2">{{Cart::total()}}₫</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -136,7 +136,7 @@
 
                             <div class="box-footer">
                                 <div class="pull-left">
-                                    <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Tiếp tục mua hàng</a>
+                                    <a href="{{route('product_full')}}" class="btn btn-default"><i class="fa fa-chevron-left"></i> Tiếp tục mua hàng</a>
                                 </div>
                                 <div class="pull-right">
                                     @if(count($cart))  
@@ -164,18 +164,18 @@
                         <div class="col-md-3">
                             <div class="product">
                                 <div class="image">
-                                    <a href="detail.html">
+                                    <a href="{{route('product_detail',[$item->id])}}">
                                         <img src="/images/upload/{{$sp->image}}" alt="" class="img-responsive image1">
                                     </a>
                                 </div>
                                 <div class="text">
-                                    <h3><a href="detail.html">{{$sp->ten_sanpham}}</a></h3>
+                                    <h3><a href="{{route('product_detail',[$item->id])}}">{{$sp->ten_sanpham}}</a></h3>
                                     @if($sp->giamgia != 0)
                                         <p class="price"><del>{!! number_format($sp->giacu,0,",","." ) !!} </del> 
                                         {!! number_format($sp->dongia,0,",","." ) !!} 
                                         ₫/{!! $sp->donvitinh !!}</p>
                                     @else
-                                        <p class="price">{!! number_format($sp->dongia,0,",","." ) !!} 
+                                        <p class="price">{!! number_format($sp->dongia,0,",","." ) !!}
                                         ₫/{!! $sp->donvitinh !!}</p>
                                     @endif
                                 </div>
@@ -200,15 +200,15 @@
                                 <tbody>
                                     <tr>
                                         <td>Tổng giá đơn hàng</td>
-                                        <th>{{Cart::subtotal()}} ₫</th>
+                                        <th>{{Cart::subtotal()}}₫</th>
                                     </tr>
                                     <tr>
                                         <td>Thuế</td>
-                                        <th>{{ Cart::tax()}} ₫</th>
+                                        <th>{{ Cart::tax()}}₫</th>
                                     </tr>
                                     <tr class="total">
                                         <td>Tổng tiền</td>
-                                        <th>{{Cart::total()}} ₫</th>
+                                        <th>{{Cart::total()}}₫</th>
                                     </tr>
                                 </tbody>
                             </table>

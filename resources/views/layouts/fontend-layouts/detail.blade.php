@@ -94,17 +94,23 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="row" id="thumbs">
-                            @if(count($data->sanphamchitiet->imagelist) != 0)
+                        @if(count($data->sanphamchitiet) > 0)
                             @foreach($data->sanphamchitiet->imagelist as $images)
+                            @if(count($images) > 0)
                             <div class="col-sm-3">
-                                <a href="{{$images->duongdan}}" class="thumb">
+                                <a href="/{{$images->duongdan}}" class="thumb">
                                     <img src="/{{$images->duongdan}}" alt="" class="img-responsive">
                                 </a>
                             </div>
+                            @else
+                            <div class="col-sm-3">
+                                Không có  chi tiết
+                            </div>
+                            @endif
                             @endforeach
                             @else
                             <div class="col-sm-3">
-                                Không có ảnh chi tiết
+                                Không có  chi tiết
                             </div>
                             @endif
                         </div>

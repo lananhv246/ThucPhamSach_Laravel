@@ -63,13 +63,13 @@
                             @if(isset($phieuxuatkhoct->donhangno))
                             <td> {!! $phieuxuatkhoct->donhangno->soluong_no !!}</td>
                             @if($phieuxuatkhoct->tonkho->soluong >=  $phieuxuatkhoct->donhangno->soluong_no)
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true">({{$phieuxuatkhoct->tonkho->soluong}})</i></td>
                             @else
-                            <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-times" aria-hidden="true">({{$phieuxuatkhoct->tonkho->soluong}})</i></td>
                             @endif
                             @else
                             <td>0</td>
-                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            <td><i class="fa fa-check" aria-hidden="true">({{$phieuxuatkhoct->tonkho->soluong}})</i></td>
                             @endif
                         </tr>
                     @endforeach

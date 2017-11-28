@@ -19,7 +19,7 @@ _________________________________________________________ -->
                         <i class="fa fa-align-justify"></i>
                     </button>
                     <!-- shopping -->
-                    <a class="btn btn-primary navbar-toggle" href="basket.html">
+                    <a class="btn btn-primary navbar-toggle" href="{{route('shopping')}}">
                         <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">{{count(Cart::content())}}Giỏ hàng</span>
                     </a>
                     <button type="button" class="navbar-toggle btn-default" data-toggle="collapse" data-target="#search">

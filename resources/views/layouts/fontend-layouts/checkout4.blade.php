@@ -32,10 +32,6 @@
                             <ul class="nav nav-pills nav-justified">
                                 <li><a href="{{route('checkout1')}}"><i class="fa fa-map-marker"></i><br>Địa chỉ</a>
                                 </li>
-                                {{--  <li><a href="checkout2.html"><i class="fa fa-truck"></i><br>Delivery Method</a>
-                                </li>
-                                <li><a href="checkout3.html"><i class="fa fa-money"></i><br>Payment Method</a>
-                                </li>  --}}
                                 <li class="active"><a href="#"><i class="fa fa-eye"></i><br>Xem lại đơn hàng</a>
                                 </li>
                             </ul>

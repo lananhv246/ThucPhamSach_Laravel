@@ -85,10 +85,6 @@
                         <h1>Mario Shop<br>Cung cấp thực phẩm trực tuyến.</h1>
                         <h3>Thực phẩm bẩn hiện nay đang trở thành nỗi lo thường trực của nhiều gia đình. Thông tin liên tiếp về thực phẩm nhiễm khuẩn, không đạt chất lượng vệ sinh an toàn thực phẩm đã gây tâm lý hoang mang tới người tiêu dùng.</h3>
 
-                        {{--  <p><a class="btn btn-lg btn-primary scroll-to" href="#content" role="button">View our top picks<br class="hidden-md hidden-lg"> for this week</a>
-                        </p>
-                        <p><a class="btn btn-lg btn-default" href="index-2.html" role="button">View alternative homepage</a>
-                        </p>  --}}
                     </div>
                 </div>
             </div>

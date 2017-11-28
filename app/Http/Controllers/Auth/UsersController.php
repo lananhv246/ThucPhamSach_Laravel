@@ -164,4 +164,8 @@ class UsersController extends Controller
     {
         //
     }
+    public function oldorders(){
+        
+        return view('layouts.fontend-layouts.customer-orders');
+    }
 }

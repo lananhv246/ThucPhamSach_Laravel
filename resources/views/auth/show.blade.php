@@ -62,10 +62,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="/" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Back</a>
+                                <a href="/" class="btn btn-primary"><span class="fa fa-arrow-circle-left"></span>Trở về</a>
                             </td>
                             <td>
-                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Edit</a>
+                                <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Chỉnh Sửa</a>
                             </td>
                         </tr>
                         </tbody>
@@ -84,12 +84,12 @@
                     {!! Form::hidden('lat', null, array('class'=>'form-control', 'id'=>'lat')) !!}
 
                     {!! Form::hidden('lng', null, array('class'=>'form-control', 'id'=>'lng')) !!}
-                            <a href="{{route('diachikh.edit',[$data->diachikh->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
+                            <a href="{{route('users.edit',[$data->id])}}" class="btn btn-primary"><span class="fa fa-pencil"></span>Sửa Thông Tin</a>
                             <tr>Ngày lập thông tin: {!! $data->diachikh->created_at !!}| Ngày Cập nhật thông tin: {!! $data->diachikh->updated_at !!}</tr>
                     {!! Form::close() !!}
                         @else
-                    <div>Chua có thong tin chi tiết</div>
-                        <a href="{{route('diachikh.create') }}" type="button" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                    <div>Chưa có thông tin chi tiết</div>
+                        <a href="{{route('users.edit',[$data->id])}}" type="button" class="btn btn-primary"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                         @endif
                 </div>
                 <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>
