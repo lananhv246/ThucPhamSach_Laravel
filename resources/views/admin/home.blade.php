@@ -81,7 +81,7 @@
 				</div>
 				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 					<div class="panel panel-red panel-widget ">
-						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
+						<div class="row no-padding"><em class="fa fa-xl fa-product-hunt color-red"></em>
 							@if(isset($sanpham))
 							<?php 
 							if(count($sanpham) > 1000){

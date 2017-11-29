@@ -63,7 +63,7 @@ class LoginController extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
             if(Auth::check() || Auth::guard('admin')->check()){
-                    echo 'erro';
+                return redirect()->route('logout')->withErrors('vui lòng đăng nhập lại')->withInput();
             }else{
 
                 if( Auth::attempt(['email' => $email, 'password' =>$password], $request->has('remember'))) {

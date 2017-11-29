@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('logout','Admin\LoginController@logout');
         Route::get('register','Admin\RegisterController@showRegistrationForm');
         Route::post('register','Admin\RegisterController@register');
-        Route::post('logout','Admin\LoginController@logout');
+        Route::post('logout',['as'=>'logout', 'users'=>'Admin\LoginController@logout']);
 
         //danhmucloai
         Route::resource('danhmucloai','DanhmucloaiController');
@@ -60,6 +60,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('phieuxuatkho','PhieuxuatkhoController');
         Route::get('phieuxuatkho/createnewoldorder/{id}',['as'=>'phieuxuatkho.createnewoldorder','uses'=>'PhieuxuatkhoController@createnewoldorder']);
         Route::post('phieuxuatkho/storenewoldorder/{id}',['as'=>'phieuxuatkho.storenewoldorder','uses'=>'PhieuxuatkhoController@storenewoldorder']);
+        Route::get('phieuxuatkho/print/{id}',['as'=>'phieuxuatkho.print','uses'=>'PhieuxuatkhoController@print']);
         //nhacc
         Route::resource('nhacungcap','NhacungcapController');
         //phieunhap

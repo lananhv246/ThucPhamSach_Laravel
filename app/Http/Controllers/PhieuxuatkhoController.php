@@ -345,4 +345,8 @@ class PhieuxuatkhoController extends Controller
         Session::flash('success','Thành Công');
         return redirect()->back();
     }
+    public function print($id){
+        $data = PhieuXuatKho::findOrFail($id);
+        return view('admin.manager.phieuxuatkho.print',compact('data'));
+    }
 }

@@ -21,6 +21,7 @@ class IndexController extends Controller
         $dm = DanhMucLoai::pluck('ten_danhmuc','id');
         $sanphamnew = SanPham::orderBy('id','DESC')->paginate(12);
         $search = SanPham::all();
+        
         $sanpham = DanhMucLoai::find(1);
         $sanpham2 = DanhMucLoai::find(2);
         return view('layouts.fontend-layouts.index', compact('sanphamnew','danhmuc','topnew','topsale','dm', 'sanpham', 'sanpham2','search'));

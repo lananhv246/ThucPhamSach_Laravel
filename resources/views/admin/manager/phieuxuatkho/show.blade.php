@@ -98,6 +98,8 @@
                             @if(count($data->id_admin) != null)
                             <a href="#" disabled class="btn btn-primary">
                                 <span class="fa fa-pencil"></span>Đả duyệt hàng</a>
+                            <a href="{{route('phieuxuatkho.print',[$data->id]) }}" class="btn btn-primary">
+                            <span class="fa fa-print"></span>In</a>
                             @else
                             <a href="{{route('phieuxuatkho.edit',[$data->id]) }}" class="btn btn-primary">
                                 <span class="fa fa-pencil"></span>Duyệt Phiếu xuất kho</a>
