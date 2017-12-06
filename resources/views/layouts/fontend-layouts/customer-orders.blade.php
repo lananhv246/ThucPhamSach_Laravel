@@ -1,3 +1,5 @@
+ @extends('layouts.fontend-layouts.master')
+@section('content')
  <div id="all">
 
         <div id="content">
@@ -8,7 +10,7 @@
 
                         <li><a href="#">Trang chủ</a>
                         </li>
-                        <li>Đơn đặt hàng</li>
+                        <li>Đơn hàng</li>
                     </ul>
 
 
@@ -16,9 +18,9 @@
 
                         <div class="row">
                             <div class="col-sm-10 col-sm-offset-1">
-                                <h1>Đơn đặt hàng</h1>
+                                <h1>Đơn hàng</h1>
 
-                                <p class="lead">Tất cả các đơn đặt hàng của bạn.</p>
+                                <p class="lead">Đây là đơn hàng giao thực tế.</p>
                                 <p class="text-muted">Nếu bạn có bất kỳ câu hỏi nào, vui lòng <a href="contact.html">liên hệ</a> với chúng tôi, trung tâm dịch vụ khách hàng của chúng tôi đang làm việc cho bạn 24/7.</p>
                             </div>
                         </div>
@@ -39,57 +41,41 @@
                                     <tr>
                                         <th>Đơn đặt hàng</th>
                                         <th>Ngày</th>
-                                        <th>Tổng tiền</th>
+                                        <th>Đơn hàng nợ</th>
                                         <th>Thông tin </th>
+                                        <th>Hủy đơn hàng</th>
                                         <th>Hơn nữa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @if(count($user->phieuxuatkho)!= 0)
+                                    @foreach($user->phieuxuatkho as $data)
                                     <tr>
-                                        <th># 1735</th>
-                                        <td>22/06/2013</td>
-                                        <td>$ 150.00</td>
-                                        <td><span class="label label-info">Being prepared</span>
+                                        <th>#{{$data->id}}</th>
+                                        <td>{{$data->created_at}}</td>
+                                        @if(isset($data->phieuxuatkhochitiet->donhangno))
+                                        <td>Còn nợ</td>
+                                        @else
+                                        <td>0</td>
+                                        @endif
+                                        @if($data->id_admin != null)
+                                        <td><span class="label label-success">Đả nhận</span></td>
+                                         <td>Đơn hàng đả xử lý</td>
+                                        @else
+                                        <td><span class="label label-info">Chờ</span></td>
+                                        <td>
+                                        {!! Form::open(['route'=>['users.destroy_orderhistory',$data->khachhang->id, $data->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
+                                        {!! Form::submit('Xóa', ['class'=>'btn btn-primary']) !!}
+                                        {!! Form::close() !!}
                                         </td>
-                                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a>
+                                        @endif
+                                        <td><a href="{{route('users.orderhistory_detail', [$user->id, $data->id])}}" class="btn btn-primary btn-sm">Chi tiết</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th># 1735</th>
-                                        <td>22/06/2013</td>
-                                        <td>$ 150.00</td>
-                                        <td><span class="label label-info">Being prepared</span>
-                                        </td>
-                                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th># 1735</th>
-                                        <td>22/06/2013</td>
-                                        <td>$ 150.00</td>
-                                        <td><span class="label label-success">Received</span>
-                                        </td>
-                                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th># 1735</th>
-                                        <td>22/06/2013</td>
-                                        <td>$ 150.00</td>
-                                        <td><span class="label label-danger">Cancelled</span>
-                                        </td>
-                                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th># 1735</th>
-                                        <td>22/06/2013</td>
-                                        <td>$ 150.00</td>
-                                        <td><span class="label label-warning">On hold</span>
-                                        </td>
-                                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                @else
+                                <tr><td><div>Bạn chưa mua sản phẩm nào</div></td></tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -119,13 +105,22 @@
 
                             <ul class="nav nav-pills nav-stacked">
                                 <li class="active">
-                                    <a href="customer-orders.html"><i class="fa fa-list"></i>Tất cả đơn đặt hàng</a>
+                                    <a href="#"><i class="fa fa-list"></i>Tất cả đơn hàng</a>
                                 </li>
                                 <li>
-                                    <a href="customer-account.html"><i class="fa fa-user"></i>Tài khoản cá nhân</a>
+                                    <a href="{{route('users.show',[$user->id])}}"><i class="fa fa-user"></i>Tài khoản cá nhân</a>
                                 </li>
                                 <li>
-                                    <a href="index-2.html"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                                   <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                                            document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out"></i>
+                                        Đăng xuất
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -146,3 +141,4 @@
 
     </div>
     <!-- /#all -->
+@endsection

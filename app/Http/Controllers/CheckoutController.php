@@ -16,6 +16,8 @@ use App\SanPham;
 use App\TonKho;
 use Carbon\Carbon;
 use App\DonHangNo;
+use Mail;
+use App\Mail\Sendmail;
 // use App\Notifications\Thongbaodonhang;
 
 class CheckoutController extends Controller
@@ -128,6 +130,8 @@ class CheckoutController extends Controller
             // echo $hdcts;
             // echo $itemxuatkho->qty;
         }
+        $hd = HoaDon::find(126);
+        // Mail::to(Auth::user()->email)->send(new Sendmail($hd));
         $request->session()->flash('success', 'Bạn đả hoàn tất việc mua sản phẩm');
         return redirect('/');
     }

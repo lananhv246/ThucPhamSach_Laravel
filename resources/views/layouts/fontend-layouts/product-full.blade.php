@@ -83,7 +83,7 @@
             $('#chitietsanpham').html(chitietsanpham+
                 '<a href="'+routeid+'">Đọc tiếp</a>'
             );
-            $('#addcart').html('<a href="#" id="add-cart<?php echo $i;?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>')
+            $('#addcart').html('<a type="button" id="add-cart<?php echo $i;?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>')
             $('#add-cart<?php echo $i;?>').on('click', function(){
                 var idpro = $('#idsanpham<?php echo $i;?>').val();
                 var namepro = $('#tensanpham<?php echo $i;?>').val();
@@ -274,7 +274,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a  href="#" id="add-cart<?php echo $count;?>" class="btn-none btn btn-default">
+                                                        <a type="button" id="add-cart<?php echo $count;?>" class="btn-none btn btn-default">
                                                             <span class="sr-only">add cart</span>
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </a>
@@ -420,6 +420,8 @@
 
                 </div>
                 <!-- /.col-sm-12 -->
+         <!-- phan trang -->
+    {!! $product_full->links() !!}
 
             </div>
             <!-- /.container -->

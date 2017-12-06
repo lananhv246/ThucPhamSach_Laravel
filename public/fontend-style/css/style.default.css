@@ -127,7 +127,7 @@ a i.fa,button i.fa{margin:0 5px}
 }
 @media (max-width:767px){#content .info-bar .products-sort-by{text-align:center;margin:10px 0 0}
 }
-#content .product{background:#fff;border-bottom:solid 1px #e6e6e6;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin-bottom:30px;overflow:hidden;text-align:center}
+#content .product{background:#fff;height:330px;border-bottom:solid 1px #e6e6e6;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin-bottom:30px;overflow:hidden;text-align:center}
 #content .product .image{overflow:hidden;position:relative}
 #content .product .image img{-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out}
 @media (max-width:767px){#content .product .image img.img-responsive{min-width:100%}

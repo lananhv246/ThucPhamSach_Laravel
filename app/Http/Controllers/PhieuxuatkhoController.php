@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use Cart;
 use App\DonHangNo;
 use App\TonKho;
+use Mail;
+use App\Mail\Sendmail;
 
 class PhieuxuatkhoController extends Controller
 {
@@ -149,6 +151,10 @@ class PhieuxuatkhoController extends Controller
             }
             
         }
+        Mail::send('layouts.mail.sendmail', ['data' => $data], function ($m) use ($data) {
+            $m->to($data->khachhang->email, $data->khachhang->name)
+                ->subject('Cửa hàng thực phẩm sạch MARIO ');
+        });
         $request->session()->flash('success', 'Thành công');
         return redirect()->route('phieuxuatkho.show',$id);
     }
@@ -328,6 +334,11 @@ class PhieuxuatkhoController extends Controller
         $data->update();
             // }
         // }
+        // Mail::to($data->khachhang->email, $data->khachhang->name)->send(new Sendmail());
+        Mail::send('layouts.mail.sendmail', ['data' => $data], function ($m) use ($data) {
+            $m->to($data->khachhang->email, $data->khachhang->name)
+                ->subject('Cửa hàng thực phẩm sạch MARIO ');
+        });
         $request->session()->flash('success', 'thành công');
         return redirect()->route('phieuxuatkho.show',$id);
         

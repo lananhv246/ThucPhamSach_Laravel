@@ -27,14 +27,14 @@
         <li><a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang Quản Trị</a></li>
         <li><a href="{{route('admins.show',[Auth::id()])}}" ><i class="fa fa-user" aria-hidden="true"></i>Trang Cá Nhân</a> </li>
         <li>
-            <a href="{{ route('logout') }}"
+            <a href="{{ route('admin.logout') }}"
                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out"></i>
                 Logout
             </a>
 
-            <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{route('admin.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
         </li>

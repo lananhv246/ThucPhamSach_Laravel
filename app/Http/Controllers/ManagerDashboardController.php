@@ -35,4 +35,24 @@ class ManagerDashboardController extends Controller
         $date_khachhang = User::whereMonth('updated_at', '=', $carbon)->get();
         return view('admin.home', compact('hoadon','phieuxuatkho','khachhang','date_hoadon','sanpham','date_sanpham1','date_phieuxuatkho1','date_phieuxuatkho','date_phieunhap','date_phieunhap1','date_khachhang'));
     }
+    public function thongke(){
+
+        $hoadon = HoaDon::all();
+        $phieuxuatkho = PhieuXuatKho::all()->where('id_admin', '!=', null);
+        $phieuxuatkhochitiet = PhieuXuatKhoChiTiet::all();
+        $khachhang = User::all();
+        $carbon = Carbon::now()->format('m/Y');
+        $date_phieunhap = PhieuNhap::whereMonth('updated_at', '=', $carbon)->get();
+        $date_phieunhap1 = PhieuNhap::select('id')->whereMonth('updated_at', '=', $carbon)->get();
+        $sanpham = SanPham::all();
+        $date_tonkho = TonKho::whereMonth('updated_at', '=', $carbon)->get();
+        $date_tonkho1 = TonKho::select('updated_at')->whereMonth('updated_at', '=', $carbon)->get();
+        $date_sanpham = SanPham::whereMonth('updated_at', '=', $carbon)->get();
+        $date_sanpham1 = SanPham::select('id')->whereMonth('updated_at', '=', $carbon)->get();
+        $date_hoadon = HoaDon::whereMonth('updated_at', '=', $carbon)->get();
+        $date_phieuxuatkho = PhieuXuatKho::whereMonth('updated_at', '=', $carbon)->where('id_admin', '!=', null)->get();
+        $date_phieuxuatkho1 = PhieuXuatKho::select('tonggia', 'id_admin')->whereMonth('updated_at', '=', $carbon)->where('id_admin', '!=', null)->get();
+        $date_khachhang = User::whereMonth('updated_at', '=', $carbon)->get();
+        return view('admin.thongke', compact('carbon','hoadon','phieuxuatkho','khachhang','date_hoadon','date_tonkho1','date_tonkho','date_sanpham','sanpham','date_sanpham1','date_phieuxuatkho1','date_phieuxuatkho','date_phieunhap','date_phieunhap1','date_khachhang'));
+    }
 }

@@ -161,7 +161,7 @@
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h5>Khách Hàng Trong Tháng</h5>
+						<h5>Khách Hàng mới Trong Tháng</h5>
 						<div class="easypiechart" id="easypiechart-teal" data-percent="{!! (count($date_khachhang)*100)/$i !!}" ><span class="percent">{!! (count($date_khachhang)*100)/$i !!}%/{{$i}}</span></div>
 					</div>
 				</div>
@@ -219,7 +219,7 @@
 								$newVal = $total;
 							}
 							?>
-						<div class="easypiechart" id="easypiechart-red" data-percent="{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}" ><span class="percent">{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}%/{!! $newVal !!}</span></div>
+						<div class="easypiechart" id="easypiechart-red" data-percent="{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}" ><span class="percent">{!! intval(str_replace(',', '', (($count - ($count2 - $count3))*100)/$total ))!!}%/{!! $newVal !!} VNĐ</span></div>
 					</div>
 				</div>
 			</div>

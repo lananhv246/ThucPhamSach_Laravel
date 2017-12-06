@@ -49,7 +49,7 @@
                             @if(isset($data->diachikh))
                             <td>{!! $data->diachikh->dienthoai !!}</td>
                             @else
-                                <td>Chua có thong tin chi tiết</td>
+                                <td>Chưa có thông tin chi tiết</td>
                             @endif
                         </tr>
                         <tr>

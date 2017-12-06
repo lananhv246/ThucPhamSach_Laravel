@@ -13,6 +13,8 @@ use App\SanPhamChiTiet;
 use Cart;
 use Auth;
 use App\DiaChiKH;
+use App\HoaDon;
+use App\PhieuXuatKho;
 
 class IndexController extends Controller
 {
@@ -21,13 +23,12 @@ class IndexController extends Controller
         $dm = DanhMucLoai::pluck('ten_danhmuc','id');
         $sanphamnew = SanPham::orderBy('id','DESC')->paginate(12);
         $search = SanPham::all();
-        
         $sanpham = DanhMucLoai::find(1);
         $sanpham2 = DanhMucLoai::find(2);
         return view('layouts.fontend-layouts.index', compact('sanphamnew','danhmuc','topnew','topsale','dm', 'sanpham', 'sanpham2','search'));
     }
     public function product_full(){
-        $product_full = SanPham::all();
+        $product_full = SanPham::orderBy('id','DESC')->paginate(12);
         return view('layouts.fontend-layouts.product-full', compact('product_full'));
     }
     public function product_detail($id){
@@ -73,6 +74,15 @@ class IndexController extends Controller
         $data = Auth::user();
         $thongtin = DiaChiKH::where('id_khachhang',$data->id)->first();
          return view('layouts.fontend-layouts.checkout4',compact('data','cart','thongtin'));
+    }
+    public function orderhistory($id){
+        $user = User::find($id);
+        return view('layouts.fontend-layouts.customer-orders',compact('user'));
+    }
+    public function orderhistory_detail($iduser, $idorder){
+        $uers = User::find($iduser);
+        $data = PhieuXuatKho::find($idorder);
+        return view('layouts.fontend-layouts.customer-order',compact('data'));
     }
 
     public function gioithieu()

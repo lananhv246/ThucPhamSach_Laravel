@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use  Illuminate\Support\Facades\Input;
 use Session;
 use App\DiaChiKH;
+use App\PhieuXuatKho;
 use Illuminate\Support\MessageBag;
 class UsersController extends Controller
 {
@@ -167,5 +168,13 @@ class UsersController extends Controller
     public function oldorders(){
         
         return view('layouts.fontend-layouts.customer-orders');
+    }
+
+    public function destroy_orderhistory($id_user, $id_orderhistiory)
+    {
+        $data = User::find($id_user);
+        PhieuXuatKho::findOrFail($id_orderhistiory)->delete();
+        Session::flash('success','Thành Công');
+        return redirect()->back();
     }
 }

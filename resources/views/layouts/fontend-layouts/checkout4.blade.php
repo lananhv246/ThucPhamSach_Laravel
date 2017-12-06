@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
 
-                        <li><a href="#">Trang chủ</a>
+                        <li><a href="/">Trang chủ</a>
                         </li>
                         <li>Kiểm tra - Xem lại đơn hàng</li>
                     </ul>
@@ -24,6 +24,7 @@
                     </div>
 
                 </div>
+                                @if(count($cart))
 
                 <div class="col-md-9 clearfix" id="checkout">
 
@@ -38,7 +39,6 @@
 
                             <div class="content">
                                 <div class="table-responsive">
-                                @if(count($cart))
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -73,8 +73,6 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                                @else
-                                @endif
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
@@ -135,6 +133,9 @@
                 </div>
                 <!-- /.col-md-3 -->
 
+            @else
+            <div>bạn chưa có sản phẩm nào</div>
+            @endif
             </div>
             <!-- /.container -->
         </div>

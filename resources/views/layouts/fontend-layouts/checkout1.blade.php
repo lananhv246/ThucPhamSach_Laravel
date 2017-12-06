@@ -32,6 +32,7 @@
                                         {{$errors->first('errorlogin')}}
                                     </div>
                                 @endif
+                                @include('flashmessage.flashmessage')
                                 <!-- thong bao loi-->
                             </div>
                         </div>
@@ -71,12 +72,11 @@
                                         {!! Form::label('password_confirmation', 'Xác Nhận:') !!}
                                         {!! Form::password('password_confirmation', array('class'=>'form-control')) !!}
 
-                                    @if(isset($data->diachikh))
-                                        {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
-                                        {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
-
                                     </div>
                                     <div class="col-sm-6">
+                                    @if(isset($data->diachikh))
+                                            {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
+                                            {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
                                             {!! Form::label('diachi', 'Địa Chỉ:') !!}
                                             {!! Form::text('diachi', $data->diachikh->diachi, array('class'=>'form-control', 'id'=>'searchmap')) !!}
 
@@ -118,12 +118,17 @@
                                 </div>
                                 @if(Auth::check())
                                     @if(isset(Auth::user()->diachikh))
-                                <div class="pull-right">
-                                    <a href="{{route('checkout2')}}" type="button" class="btn btn-primary">Thanh toán<i class="fa fa-chevron-right"></i></a>
-                                </div>
-                                @else
-                                    <p>vui lòng cập nhật thông tin</p>
-                                @endif
+                                        @if(count(Cart::content())!= 0)
+                                        <div class="pull-right">
+                                            <a href="{{route('checkout2')}}" type="button" class="btn btn-primary">Thanh toán<i class="fa fa-chevron-right"></i></a>
+                                        </div>
+                                        @else
+                                        @endif
+                                    @else
+                                    <div class="pull-right">
+                                        <a href="{{route('users.edit',[$data->id]) }}" class="btn btn-primary"><span class="fa fa-pencil"></span>vui lòng cập nhật thông tin</a>
+                                    </div>
+                                    @endif
 
                                 @else
                                     @include('auth.login')
@@ -145,6 +150,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
+                                @if(count(Cart::content())!= 0)
                                     <tr>
                                         <td>Tổng giá đơn hàng</td>
                                         <th>{{Cart::subtotal()}}₫</th>
@@ -157,6 +163,9 @@
                                         <td>Tổng tiền</td>
                                         <th>{{Cart::total()}}₫</th>
                                     </tr>
+                                @else
+                                <tr><td>Bạn chưa mua sản phẩm nào</td></tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>

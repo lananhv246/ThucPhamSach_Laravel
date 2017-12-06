@@ -86,6 +86,7 @@
 				</ul>
 			</li>  --}}
 			<li>
+			<li><a href="{{route('admin.thongke') }}"><em class="fa fa-truck">&nbsp;</em>Thống Kê</a></li>
             <a href="{{ route('logout') }}" style="color:#000"
                                         onclick="event.preventDefault();
                                                                                 document.getElementById('logout-form').submit();">

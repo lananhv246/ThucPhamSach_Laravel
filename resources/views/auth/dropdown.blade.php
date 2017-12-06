@@ -27,12 +27,18 @@
     <ul class="dropdown-menu">
         <li><a href="{{route('users.show',[Auth::id()])}}"><i class="fa fa-user"></i>Trang Cá Nhân</a> 
         </li>
+        <?php $user = \App\User::find(Auth::id()) ?>
+        @if(isset($user->phieuxuatkho))
+        <li><a href="{{route('users.orderhistory',[Auth::id()])}}"><i class="fa fa-list-alt" aria-hidden="true"></i>Đơn hàng</a> 
+        </li>
+        @else
+        @endif
         <li>
         <a href="{{ route('logout') }}"
                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out"></i>
-                Logout
+                Đăng xuất
             </a>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

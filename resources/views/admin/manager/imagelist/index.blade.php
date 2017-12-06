@@ -26,18 +26,18 @@
                         </td>
                         <td>{!! $images->sanpham->ten_sanpham !!}</td>
                         <td>
-                            <a href="{{route('imagelist.show',[$images->id]) }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Xem</a>
+                            <a href="{{route('imagelist.show',[$images->id]) }}" class="btn btn-default"><span class="fa fa-eye"></span>Xem</a>
                         </td>
                         <td>
                             {!! Form::open(['url' => ['/admin/imagelist/delete', $images->id], 'method'=>'DELETE', 'files' => true, 'enctype'=>'multipart/form-data' ]) !!}
-                            {!! Form::submit('Xóa Hình Ảnh', ['class'=>'btn btn-success btn-sm']) !!}
+                            {!! Form::submit('Xóa Hình Ảnh', ['class'=>'btn btn-default']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <a href="{{url('/admin') }}" class="btn red btn-sm btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
-                    <a href="{{route('imagelist.create') }}" class="btn btn-sm green btn-danger"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
+                    <a href="{{url('/admin') }}" class="btn btn-default"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+                    <a href="{{route('imagelist.create') }}" class="btn btn-default"><span class="fa fa-plus-circle"></span>Thêm Mới</a>
                 </tr>
                 </tbody>
             </table>

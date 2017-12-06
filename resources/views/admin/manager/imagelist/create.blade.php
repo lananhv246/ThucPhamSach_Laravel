@@ -23,7 +23,7 @@
                 {!! Form::close() !!}
                 <!--token-->
             </div>
-            <a href="{{route('imagelist.index') }}" class="btn btn-sm red btn-danger"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
+            <a href="{{route('imagelist.index') }}" class="btn btn-default"><span class="fa fa-arrow-circle-left"></span>Trở Về</a>
 
         </div>
     </div>

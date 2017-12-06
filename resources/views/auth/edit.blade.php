@@ -28,8 +28,6 @@
                 {!! Form::label('password_confirmation', 'Xác Nhận:') !!}
                 {!! Form::password('password_confirmation', array('class'=>'form-control')) !!}
                 
-                {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
-                {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
 
                 {!! Form::submit('Lưu', array('class'=>'btn btn-primary', 'style' => 'margin:20px 0px')) !!}
                 </div>
@@ -48,6 +46,9 @@
                     {!! Form::hidden('lat', $data->diachikh->lat, array('class'=>'form-control', 'id'=>'lat')) !!}
 
                     {!! Form::hidden('lng', $data->diachikh->lng, array('class'=>'form-control', 'id'=>'lng')) !!}
+                    
+                    {!! Form::label('dienthoai', 'Số Điện Thoại:') !!}
+                    {!! Form::text('dienthoai', $data->diachikh->dienthoai, array('class'=>'form-control')) !!}
                     <script type="text/javascript" src="{{ asset('js/fixed-position.js')}}"></script>
                 @else
                     {{--  {!! Form::label('id_khachhang', 'Chọn Khách Hàng:') !!}

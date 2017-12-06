@@ -104,9 +104,9 @@
                                 ₫/{!! $data->donvitinh !!}</p>
                             @endif
                                 <p class="text-center">
-                                    <a href="#" id="add-cart" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
-                                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Yêu thích"><i class="fa fa-heart-o"></i>
-                                    </button>
+                                    <a type="button" id="add-cart" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                    {{--  <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Yêu thích"><i class="fa fa-heart-o"></i>
+                                    </button>  --}}
                                 </p>
 
                             </form>

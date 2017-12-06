@@ -25,10 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('',['as'=>'admin.home','uses'=>'ManagerDashboardController@index']);
         Route::get('login','Admin\LoginController@showLoginForm');
         Route::post('login','Admin\LoginController@login');
-        Route::get('logout','Admin\LoginController@logout');
+        Route::get('logout',['as'=>'admin.logout','users'=>'Admin\LoginController@logout']);
         Route::get('register','Admin\RegisterController@showRegistrationForm');
         Route::post('register','Admin\RegisterController@register');
-        Route::post('logout',['as'=>'logout', 'users'=>'Admin\LoginController@logout']);
+        Route::post('logout','Admin\LoginController@logout');
 
         //danhmucloai
         Route::resource('danhmucloai','DanhmucloaiController');
@@ -71,6 +71,7 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('tramtrungchuyen','TramtrungchuyenController');
         //trangthaihoadon
         Route::resource('trangthaihoadon','TrangthaihoadonController');
+        Route::get('thongke',['as'=>'admin.thongke','uses'=>'ManagerDashboardController@thongke']);
     });
  });
 Route::group(['middleware' => 'auth'], function () {
@@ -78,6 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('checkout', 'CheckoutController');
     Route::get('/checkout1',['as'=>'checkout1','uses'=>'IndexController@checkout1']);
     Route::get('/checkout2',['as'=>'checkout2','uses'=>'IndexController@checkout2']);
+    //order
+    Route::get('/users/{id}/orderhistory',['as'=>'users.orderhistory', 'uses'=>'IndexController@orderhistory']);
+    Route::get('/users/{iduser}/orderhistory/{idorder}/detail',['as'=>'users.orderhistory_detail', 'uses'=>'IndexController@orderhistory_detail']);
+    Route::delete('/users/{id_user}/orderhistory/{id_orderhistiory}/delete',['as'=>'users.destroy_orderhistory', 'uses'=>'Auth\UsersController@destroy_orderhistory']);
 });
 
 Route::get('/carousel', function () {
@@ -102,7 +107,6 @@ Route::get('loaisanpham/{id}',['as'=>'loaisanpham', 'uses'=>'IndexController@loa
 Route::get('choose_danhmuc',['as'=>'choose_danhmuc', 'uses'=>'IndexController@choose_danhmuc']);
 //detail
 Route::get('/chitiet/{id}',['as'=>'product_detail', 'uses'=>'IndexController@product_detail']);
-
 //search
 Route::post('/search',['as'=>'search','uses'=>'IndexController@search']);
 Route::get('/search',['as'=>'search','uses'=>'IndexController@getsearch']);
@@ -110,3 +114,5 @@ Route::get('/search',['as'=>'search','uses'=>'IndexController@getsearch']);
 Route::get('gioithieu',['as'=>'gioithieu', 'uses'=>'IndexController@gioithieu']);
 Route::get('tintuc',['as'=>'tintuc', 'uses'=>'IndexController@tintuc']);
 Route::get('lienhe',['as'=>'lienhe', 'uses'=>'IndexController@lienhe']);
+
+Route::get('/basic_email',['as'=>'basic_email','uses'=>'PhieuxuatkhoController@basic_email']);
